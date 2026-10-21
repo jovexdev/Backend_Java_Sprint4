@@ -5,7 +5,6 @@ import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.AdditionalMatchers.aryEq;
 import static org.mockito.Mockito.*;
 
-import br.com.totvs.advisormind.conexoes.ConexaoFactory;
 import br.com.totvs.advisormind.dao.*;
 import br.com.totvs.advisormind.entities.*;
 import java.io.Reader;
@@ -24,7 +23,6 @@ class JdbcContractTest {
   Connection connection;
   PreparedStatement statement;
   ResultSet result;
-  ConexaoFactory factory;
 
   @BeforeEach
   void setup() throws Exception {
@@ -40,13 +38,12 @@ class JdbcContractTest {
     when(statement.executeQuery()).thenReturn(result);
     when(result.next()).thenReturn(true, false);
     when(result.getBigDecimal(1)).thenReturn(new BigDecimal("42"));
-    factory = new ConexaoFactory(source);
   }
 
   @Test
   void namedOracleIdentityAndParameterizedStrings() throws Exception {
     String input = "x'); DELETE FROM CLIENTE; --";
-    assertEquals(42, new VendedorRepoDao(factory).criar(new VendedorRepo(0, 0, input)));
+    assertEquals(42, new VendedorRepoDao(source).criar(new VendedorRepo(0, 0, input)));
     verify(connection).prepareStatement(
         eq("INSERT INTO VENDEDOR_REPO (TOTAL_VENDEDORES,FILTRO) VALUES (?,?)"),
         aryEq(new String[] {"ID_VEND_REPO"}));
@@ -60,7 +57,7 @@ class JdbcContractTest {
 
   @Test
   void nullableFilterUsesSqlNull() throws Exception {
-    new VendedorRepoDao(factory).criar(new VendedorRepo(0, 0, null));
+    new VendedorRepoDao(source).criar(new VendedorRepo(0, 0, null));
     verify(statement).setNull(2, Types.VARCHAR);
   }
 
@@ -68,10 +65,10 @@ class JdbcContractTest {
   void datesKeepBirthdayAndMeetingTime() throws Exception {
     when(result.next()).thenReturn(true);
     var birthday = LocalDate.of(1990, 3, 15);
-    new ClienteDao(factory).criar(new Cliente(0, "João", "ME", birthday));
+    new ClienteDao(source).criar(new Cliente(0, "João", "ME", birthday));
     verify(statement).setDate(3, java.sql.Date.valueOf(birthday));
     var time = LocalDateTime.of(2026, 9, 1, 10, 17, 23);
-    new ReuniaoDao(factory).criar(new Reuniao(0, "Texto", time, StatusReuniao.AGENDADA, 5, 6, 7));
+    new ReuniaoDao(source).criar(new Reuniao(0, "Texto", time, StatusReuniao.AGENDADA, 5, 6, 7));
     verify(statement).setTimestamp(2, Timestamp.valueOf(time));
     verify(statement).setLong(4, 5L);
     verify(statement).setLong(5, 6L);
@@ -81,7 +78,7 @@ class JdbcContractTest {
   @Test
   void clobUsesCharacterStreamWithoutTruncation() throws Exception {
     String json = "{\"texto\":\"" + "ação".repeat(2000) + "\"}";
-    new ReuniaoRepoDao(factory).criar(new ReuniaoRepo(0, json, 0));
+    new ReuniaoRepoDao(source).criar(new ReuniaoRepo(0, json, 0));
     var reader = ArgumentCaptor.forClass(Reader.class);
     verify(statement).setCharacterStream(eq(1), reader.capture());
     var text = new java.io.StringWriter();
@@ -91,7 +88,7 @@ class JdbcContractTest {
 
   @Test
   void oracleConstraintErrorsStayConflictsAndReleaseResources() throws Exception {
-    var dao = new VendedorRepoDao(factory);
+    var dao = new VendedorRepoDao(source);
     for (int code : new int[] {1, 2291, 2292}) {
       doThrow(new SQLIntegrityConstraintViolationException("Oracle constraint", "23000", code))
           .when(statement).executeUpdate();
@@ -104,7 +101,7 @@ class JdbcContractTest {
   @Test
   void mapperFailureClosesResultSetStatementAndConnection() throws Exception {
     when(result.getLong("ID_VEND_REPO")).thenThrow(new SQLException("mapping failure"));
-    assertThrows(UncategorizedSQLException.class, () -> new VendedorRepoDao(factory).listar());
+    assertThrows(UncategorizedSQLException.class, () -> new VendedorRepoDao(source).listar());
     verify(result).close();
     verify(statement).close();
     verify(connection).close();
@@ -113,13 +110,13 @@ class JdbcContractTest {
   @Test
   void prepareFailureAlsoReleasesConnection() throws Exception {
     when(connection.prepareStatement(anyString())).thenThrow(new SQLException("prepare failure"));
-    assertThrows(UncategorizedSQLException.class, () -> new VendedorRepoDao(factory).listar());
+    assertThrows(UncategorizedSQLException.class, () -> new VendedorRepoDao(source).listar());
     verify(connection).close();
   }
 
   @Test
   void missingOrOverflowingIdentityCannotBecomeAnIncorrectId() throws Exception {
-    var dao = new VendedorRepoDao(factory);
+    var dao = new VendedorRepoDao(source);
     when(result.next()).thenReturn(false);
     assertThrows(DataRetrievalFailureException.class, () -> dao.criar(new VendedorRepo(0, 0, null)));
     when(result.next()).thenReturn(true);

@@ -1,14 +1,14 @@
 package br.com.totvs.advisormind.dao;
 
 import br.com.totvs.advisormind.entities.*;
-import br.com.totvs.advisormind.conexoes.ConexaoFactory;
+import javax.sql.DataSource;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class ReuniaoRepoDao extends JdbcSupport<ReuniaoRepo> {
-  public ReuniaoRepoDao(ConexaoFactory conexoes) {
+  public ReuniaoRepoDao(DataSource dataSource) {
     super(
-        conexoes,
+        dataSource,
         "REUNIAO_REPO",
         "ID_REUN_REPO",
         r ->
