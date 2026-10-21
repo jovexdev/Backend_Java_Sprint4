@@ -1,6 +1,6 @@
 # Alinhamento ao exemplo do professor
 
-Revisão de 20/10/2026, a partir do commit `f274be0` do backend. Foram inspecionados os arquivos reais do repositório e as classes Aluno, AlunoDAO, AlunoBo, AlunoController e ConexaoFactory do arquivo SpringbootAluno-main.zip antes de concluir a implementação. O ZIP não faz parte do repositório e nenhuma credencial do exemplo foi copiada.
+Revisão de 20/10/2026, a partir do commit `01f2ab4` do backend. Foram inspecionados os arquivos reais do repositório e as classes Aluno, AlunoDAO, AlunoBo, AlunoController e ConexaoFactory do arquivo SpringbootAluno-main.zip antes de concluir a implementação. O ZIP não faz parte do repositório e nenhuma credencial do exemplo foi copiada.
 
 ## Camadas e persistência
 
@@ -18,7 +18,7 @@ Todos os valores são parâmetros de PreparedStatement. Os nomes de tabelas, col
 
 ## Transações e exceções
 
-ConexaoFactory agora contém a abertura JDBC do professor: Class.forName("oracle.jdbc.driver.OracleDriver") e DriverManager.getConnection(URL, USUARIO, SENHA), propagando ClassNotFoundException/SQLException. A classe não depende de Spring, DataSource ou DataSourceUtils. BancoConfig fornece as configurações e cria o pool Hikari com ConexaoDataSource, cujo getConnection() chama factory.conexao(). Assim, a factory é usada nas conexões físicas reais da API e do console. ConexaoH2Factory separa o driver local/teste. JdbcSupport adquire/libera a conexão via DataSourceUtils, conforme o [contrato do Spring](https://docs.spring.io/spring-framework/docs/6.2.x/javadoc-api/org/springframework/jdbc/datasource/DataSourceUtils.html). Dentro de @Transactional ou TransactionTemplate, os DAOs compartilham a conexão da transação. Fora dela, a conexão é devolvida ao pool ao final de cada operação. Não há conexão armazenada em campo dos DAOs e eles não executam commit ou rollback individualmente.
+ConexaoFactory agora contém a abertura JDBC do professor: Class.forName("oracle.jdbc.driver.OracleDriver") e DriverManager.getConnection(URL, USUARIO, SENHA), propagando ClassNotFoundException/SQLException. A classe não depende de Spring, DataSource ou DataSourceUtils. BancoConfig usa a configuração da própria classe no perfil Oracle e cria o pool Hikari com ConexaoDataSource, cujo getConnection() chama factory.conexao(). Assim, a factory é usada nas conexões físicas reais da API e do console. ConexaoH2Factory separa o driver local/teste. JdbcSupport adquire/libera a conexão via DataSourceUtils, conforme o [contrato do Spring](https://docs.spring.io/spring-framework/docs/6.2.x/javadoc-api/org/springframework/jdbc/datasource/DataSourceUtils.html). Dentro de @Transactional ou TransactionTemplate, os DAOs compartilham a conexão da transação. Fora dela, a conexão é devolvida ao pool ao final de cada operação. Não há conexão armazenada em campo dos DAOs e eles não executam commit ou rollback individualmente.
 
 PreparedStatement e ResultSet são fechados em try-with-resources, inclusive quando preparação, execução, mapeamento ou leitura da identidade falham. SQLException é traduzida para a hierarquia DataAccessException do Spring: violações de integridade continuam retornando HTTP 409 pelo handler existente; falhas internas continuam sem SQL, senha ou stack trace na resposta. As exceções de persistência são unchecked, preservando rollback dos Services.
 
@@ -34,17 +34,24 @@ Permanecem os bloqueios SELECT FOR UPDATE, a ordem dos bloqueios de pais, os con
 
 ## Oracle FIAP e configuração segura
 
-URL/USUARIO/SENHA são campos finais de cada factory, recebidos por construtor; o construtor vazio usa DB_USER/DB_PASSWORD do ambiente e a URL FIAP fornecida no exemplo, opcionalmente substituída por DB_URL. O método conexao() tem as mesmas duas chamadas do professor. As credenciais continuam externas para cumprir o requisito de não versionar senhas.
+URL/USUARIO/SENHA são campos finais de cada factory. O construtor vazio contém a URL FIAP do exemplo e os placeholders de usuário/senha. **A conta Oracle da API e do console é configurada nesse construtor, diretamente em ConexaoFactory.java.** BancoConfig usa `new ConexaoFactory()` para Oracle, sem obter a conta de DataSourceProperties ou de DB_*.
 
-O perfil oracle mantém `spring.sql.init.mode=never`, desabilita explicitamente o console H2 e exige DB_USER e DB_PASSWORD externos; DB_URL pode substituir a URL FIAP padrão. Use a URL de conexão FIAP fornecida pela disciplina, sem usuário/senha na própria URL. O schema deve conter as seis tabelas compatíveis com `sql/oracle-create.sql`. Não foi feita conexão ao Oracle FIAP nesta revisão.
+```java
+public ConexaoFactory() {
+  this("jdbc:oracle:thin:@oracle.fiap.com.br:1521:orcl",
+      "Seu usuario Oracle", "Sua Senha Oracle");
+}
+```
 
-Exemplo PowerShell com placeholders, preenchidos apenas no ambiente local:
+Preencha os placeholders somente na cópia local e não faça commit da classe com credenciais reais. O repositório contém apenas valores de exemplo. O construtor com parâmetros permanece para testes e uso programático. O método conexao() mantém as duas instruções do professor, sem dependência do Spring.
+
+O perfil oracle contém somente a configuração de driver, `spring.sql.init.mode=never` e console H2 desabilitado. O schema deve conter as seis tabelas compatíveis com `sql/oracle-create.sql`. Nenhuma conexão ao Oracle FIAP foi feita nesta revisão.
+
+Após editar a classe no IntelliJ, rode AdvisorMindApplication com `SPRING_PROFILES_ACTIVE=oracle`. Para o JAR, recompile antes de iniciar:
 
 ```powershell
+mvn clean package
 $env:SPRING_PROFILES_ACTIVE='oracle'
-$env:DB_URL='jdbc:oracle:thin:@oracle.fiap.com.br:1521:orcl'
-$env:DB_USER='SEU_USUARIO'
-$env:DB_PASSWORD='SUA_SENHA'
 java -jar target/TOTVS-AdvisorMind-3.0.0.jar
 ```
 
@@ -52,19 +59,19 @@ java -jar target/TOTVS-AdvisorMind-3.0.0.jar
 
 ## Validação desta revisão
 
-- Base anterior: `mvn clean verify` passou, com 46 testes executados e 3 opcionais ignorados.
+- Base anterior: `mvn clean verify` passou, com 51 testes executados e 3 opcionais ignorados.
 - Versão JDBC: `mvn clean verify` passou, com 51 testes executados e 3 opcionais Oracle ignorados (54 descobertos), sem falhas ou erros.
 - JAR real: 52 verificações HTTP passaram em três inicializações, incluindo retenção das seis tabelas após reiniciar. Foram feitas quatro chamadas ao provedor local controlado, sem OpenAI real. O script usa WRITE_DELAY=0 somente no banco H2 temporário do teste para tornar os commits duráveis também quando terminate() encerra abruptamente no Windows, e exporta a evidência em UTF-8.
 - Ambiente de execução disponível: OpenJDK 26.0.2.1 e Maven 3.9.11, compilação com release Java 21 definido no pom.xml. Não foi alegada execução local com JDK 21.
 - ConexaoFactoryTest: uso real de DriverManager com driver JDBC de teste, parâmetros URL/usuário/senha, propagação de SQLException, tratamento de driver ausente no adaptador e conexões H2 independentes; sem Oracle real.
 - JdbcContractTest: chaves Oracle por coluna, números, datas, SQL parametrizado com texto contendo comandos, null, CLOB, tradução de erros Oracle simulados e fechamento de recursos em falhas.
 - JdbcTransactionRegressionTest: pool criado sobre ConexaoDataSource/ConexaoH2Factory e limitado a uma conexão, reutilização transacional, commit e rollback dos seis DAOs, contadores/JSON, repetições de sucesso e falha sem esgotar o pool.
-- OracleConfigurationTest: carrega as propriedades reais do perfil e BancoConfig, verifica o adaptador da factory e a configuração do driver Oracle, resolve configuração externa e confirma ausência de conexão/DDL; não usa credenciais reais.
+- OracleConfigurationTest: carrega as propriedades reais do perfil e BancoConfig, verifica que o adaptador usa a configuração do construtor vazio da própria factory, mesmo com DB_* presentes no ambiente de teste, verifica o driver Oracle e confirma ausência de conexão/DDL; não usa credenciais reais.
 - Suíte anterior: 21 testes de API relacional, validações, restrições, CRUD, IA simulada, limite de bytes, CLOB longo e falhas durante atualização dos contadores; testes de domínio e do cliente HTTP preservados.
 
 Resumo extraído dos relatórios Surefire e da execução HTTP: [jdbc-resumo.json](evidencias/jdbc-resumo.json).
 
-Os testes Oracle reais são opt-in. Em schema de teste autorizado, configure DB_URL/DB_USER/DB_PASSWORD e execute:
+Os testes Oracle reais são opt-in. Em schema de teste autorizado, configure DB_URL/DB_USER/DB_PASSWORD para OracleReadOnlyTest e OracleTransactionalProbeTest. OracleDaoIntegrationTest usa o construtor vazio da ConexaoFactory com a conta preenchida na cópia local. Execute apenas os testes correspondentes à configuração realizada:
 
 ```powershell
 $env:RUN_ORACLE_READONLY='true'

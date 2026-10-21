@@ -1,6 +1,6 @@
 {
   "data": "2026-10-20",
-  "base_commit": "f274be04bbd4df5b624bf2bf0401ffec22a6b46a",
+  "base_commit": "01f2ab415e7b286c821021d05e53e57063743ffe",
   "java": "OpenJDK 26.0.2.1 (release 21)",
   "maven": "3.9.11",
   "comando_maven": "mvn clean verify",

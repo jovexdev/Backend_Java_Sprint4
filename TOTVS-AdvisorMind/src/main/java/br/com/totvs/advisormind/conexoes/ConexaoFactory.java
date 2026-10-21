@@ -11,10 +11,11 @@ public class ConexaoFactory {
   private final String SENHA;
 
   public ConexaoFactory() {
+    // Configure sua conta Oracle aqui, apenas na cópia local. Não versione a senha.
     this(
-        System.getenv().getOrDefault("DB_URL", "jdbc:oracle:thin:@oracle.fiap.com.br:1521:orcl"),
-        System.getenv("DB_USER"),
-        System.getenv("DB_PASSWORD"));
+        "jdbc:oracle:thin:@oracle.fiap.com.br:1521:orcl",
+        "Seu usuario Oracle",
+        "Sua Senha Oracle");
   }
 
   public ConexaoFactory(String url, String usuario, String senha) {

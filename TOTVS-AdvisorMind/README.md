@@ -26,23 +26,26 @@ Nenhum script é executado automaticamente no perfil oracle. O banco deve estar 
 - sql/proposta-sincronizar-repos-oracle.sql: proposta de reparo dos contadores/JSON, Oracle 12.2+ para JSON_ARRAYAGG. Execute manualmente sem escritores concorrentes ou prefira PUT dos repositórios pela API.
 - sql/dql-academico.sql: as cinco categorias de consultas recebidas, sem alteração semântica.
 
-Linux/macOS:
-```bash
-export SPRING_PROFILES_ACTIVE=oracle
-export DB_URL='jdbc:oracle:thin:@oracle.fiap.com.br:1521:orcl'
-export DB_USER='SEU_USUARIO'
-export DB_PASSWORD='SUA_SENHA'
-java -jar target/TOTVS-AdvisorMind-3.0.0.jar
+Configure a conta diretamente no construtor vazio de `src/main/java/br/com/totvs/advisormind/conexoes/ConexaoFactory.java`, apenas na sua cópia local:
+
+```java
+public ConexaoFactory() {
+  this("jdbc:oracle:thin:@oracle.fiap.com.br:1521:orcl",
+      "Seu usuario Oracle", "Sua Senha Oracle");
+}
 ```
-PowerShell:
+
+O perfil Oracle usa `new ConexaoFactory()`: valores DB_USER/DB_PASSWORD ou spring.datasource.username/password não substituem esse construtor. Os placeholders do repositório devem ser preenchidos localmente; não faça commit da classe com senha real. O construtor de três parâmetros permanece disponível para testes e uso programático.
+
+No IntelliJ, ative `SPRING_PROFILES_ACTIVE=oracle` na configuração de execução e rode AdvisorMindApplication (API) ou Main (console). Para executar o JAR após editar a classe, recompile:
+
 ```powershell
+mvn clean package
 $env:SPRING_PROFILES_ACTIVE='oracle'
-$env:DB_URL='jdbc:oracle:thin:@oracle.fiap.com.br:1521:orcl'
-$env:DB_USER='SEU_USUARIO'
-$env:DB_PASSWORD='SUA_SENHA'
 java -jar target/TOTVS-AdvisorMind-3.0.0.jar
 ```
-.env.example é referência e não é carregado automaticamente pelo Spring. Não inclua senhas/chaves em arquivos versionados. Use variáveis de ambiente ou Run Configuration.
+
+`.env.example` é referência e não é carregado automaticamente pelo Spring. DB_URL/DB_USER/DB_PASSWORD nele são somente para os probes Oracle independentes; a API usa a configuração da classe. OPENAI_API_KEY continua externa.
 
 ## Datas, comprimentos e persistência
 Cliente usa LocalDate. Reunião usa LocalDateTime sem fuso, até segundos, no formato yyyy-MM-ddTHH:mm:ss: Oracle DATE preserva hora/minuto/segundo. UNIQUE(cliente,data) é por instante local completo, não por dia. UTC é a convenção de datahoraExecucao de IA, armazenada sem offset em DATE. Não há timestamp com fuso no DDL.
@@ -82,7 +85,7 @@ Para verificar também os seis DAOs reais dentro de uma transação Spring, no m
 ```bash
 RUN_ORACLE_TRANSACTIONAL=true mvn -Dtest=OracleDaoIntegrationTest test
 ```
-Use DB_URL/DB_USER/DB_PASSWORD válidos para ambos. O probe NÃO executa DDL ou limpa tabelas: cria dados com prefixo TEST_ dentro de transação, verifica identidades/DATE/CLOB/constraints/CRUD e sempre faz rollback. Pode consumir valores da identidade, mesmo com rollback, e não substitui a validação completa da API em Oracle. Testes locais não devem ser reconfigurados para apontar ao Oracle: contêm limpeza/DDL exclusivos dos schemas H2 descartáveis.
+Use DB_URL/DB_USER/DB_PASSWORD válidos para OracleReadOnlyTest e OracleTransactionalProbeTest. OracleDaoIntegrationTest usa a conta configurada localmente em ConexaoFactory(). O probe NÃO executa DDL ou limpa tabelas: cria dados com prefixo TEST_ dentro de transação, verifica identidades/DATE/CLOB/constraints/CRUD e sempre faz rollback. Pode consumir valores da identidade, mesmo com rollback, e não substitui a validação completa da API em Oracle. Testes locais não devem ser reconfigurados para apontar ao Oracle: contêm limpeza/DDL exclusivos dos schemas H2 descartáveis.
 
 ## Material de entrega
 PDF final, docs/API.md, docs/DECISOES.md, docs/REVISAO-SQL.md, docs/RELATORIO-TESTES.md e docs/RELATORIO-ALTERACOES.md. Diagramas editáveis/exportados em docs/diagramas. Front-End/prints não foram fornecidos. Não existe integração visual ou com modelos Data Science alegada. API acadêmica local, sem autenticação definida; exposição pública requer projeto de segurança.
