@@ -1,5 +1,7 @@
 # Relatório de alterações - FINAL 3.0.0
 
+> Histórico da entrega anterior. Para a refatoração atual (ConexaoFactory transacional e seis DAOs com JDBC direto), consulte [ALINHAMENTO-JDBC.md](ALINHAMENTO-JDBC.md).
+
 Base preservada: versão2.0.0 gerada anteriormente nesta conversa. O projeto foi evoluído, mantendo artefato Maven, Java21, Spring Boot/JDBC, pacote br.com.totvs.advisormind, entidades centrais e regras úteis. O SQL recebido passa a ser fonte prioritária do esquema. Versão final3.0.0. Não foi alterado banco remoto.
 
 ## Mudanças principais

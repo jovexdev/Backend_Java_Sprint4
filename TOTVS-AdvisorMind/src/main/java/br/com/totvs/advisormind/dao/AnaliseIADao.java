@@ -1,17 +1,17 @@
 package br.com.totvs.advisormind.dao;
 
 import br.com.totvs.advisormind.entities.*;
-import org.springframework.jdbc.core.JdbcTemplate;
+import br.com.totvs.advisormind.conexoes.ConexaoFactory;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class AnaliseIADao extends JdbcSupport<AnaliseIA> {
-  public AnaliseIADao(JdbcTemplate jdbc) {
+  public AnaliseIADao(ConexaoFactory conexoes) {
     super(
-        jdbc,
+        conexoes,
         "ANALISE_IA",
         "ID_ANALISE",
-        (r, n) ->
+        r ->
             new AnaliseIA(
                 r.getLong("ID_ANALISE"),
                 r.getInt("TIPO"),
@@ -46,9 +46,9 @@ public class AnaliseIADao extends JdbcSupport<AnaliseIA> {
   }
 
   public java.util.List<AnaliseIA> porReuniao(long id) {
-    return jdbc.query(
+    return consultar(
         "SELECT * FROM ANALISE_IA WHERE REUNIAO_ID_REUNIAO=? ORDER BY TIPO",
-        (r, n) ->
+        r ->
             new AnaliseIA(
                 r.getLong("ID_ANALISE"),
                 r.getInt("TIPO"),
@@ -61,11 +61,11 @@ public class AnaliseIADao extends JdbcSupport<AnaliseIA> {
   }
 
   public boolean existeTipo(long reuniao, int tipo) {
-    return jdbc.queryForObject(
+    return consultar(
             "SELECT COUNT(*) FROM ANALISE_IA WHERE REUNIAO_ID_REUNIAO=? AND TIPO=?",
-            Long.class,
+            r -> r.getLong(1),
             reuniao,
-            tipo)
+            tipo).getFirst()
         > 0;
   }
 }

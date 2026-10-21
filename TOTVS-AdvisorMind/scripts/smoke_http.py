@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """JAR real + H2 em arquivo; IA via HTTP local controlado, sem chamadas pagas."""
-import json,os,subprocess,tempfile,time,urllib.request,urllib.error,threading
+import json,os,subprocess,sys,tempfile,time,urllib.request,urllib.error,threading
 from http.server import ThreadingHTTPServer,BaseHTTPRequestHandler
 from pathlib import Path
+sys.stdout.reconfigure(encoding="utf-8")
 jar=Path(__file__).resolve().parents[1]/"target/TOTVS-AdvisorMind-3.0.0.jar"
 java=str(Path(os.environ["JAVA_HOME"])/"bin/java") if os.environ.get("JAVA_HOME") else "java"
 root=Path(tempfile.mkdtemp(prefix="advisormind-final-http-"));evidence=[];process=None;phase="inicial";provider_calls=0
@@ -27,7 +28,9 @@ def call(method,path,body=None,expected=200):
 
 def start(controlled=False):
  global process
- args=[java,"-jar",str(jar)]
+ # No Windows terminate() encerra sem shutdown hook. Flush síncrono garante
+ # que o teste de reinício leia commits duráveis mesmo nesse encerramento.
+ args=[java,"-jar",str(jar),"--spring.datasource.url=jdbc:h2:file:./data/advisormind-final;MODE=Oracle;DB_CLOSE_ON_EXIT=FALSE;WRITE_DELAY=0"]
  if controlled:args += ["--advisormind.openai-key=test-only",f"--advisormind.openai-endpoint=http://127.0.0.1:{server.server_port}/chat"]
  env=dict(os.environ,SPRING_PROFILES_ACTIVE="local",PORT="18080",OPENAI_API_KEY="")
  process=subprocess.Popen(args,cwd=root,env=env,stdout=(root/"application.log").open("ab"),stderr=subprocess.STDOUT)

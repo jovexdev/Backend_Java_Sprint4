@@ -1,17 +1,17 @@
 package br.com.totvs.advisormind.dao;
 
 import br.com.totvs.advisormind.entities.*;
-import org.springframework.jdbc.core.JdbcTemplate;
+import br.com.totvs.advisormind.conexoes.ConexaoFactory;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class ReuniaoRepoDao extends JdbcSupport<ReuniaoRepo> {
-  public ReuniaoRepoDao(JdbcTemplate jdbc) {
+  public ReuniaoRepoDao(ConexaoFactory conexoes) {
     super(
-        jdbc,
+        conexoes,
         "REUNIAO_REPO",
         "ID_REUN_REPO",
-        (r, n) ->
+        r ->
             new ReuniaoRepo(
                 r.getLong("ID_REUN_REPO"),
                 r.getString("ARQUIVO_JSON"),
@@ -34,9 +34,9 @@ public class ReuniaoRepoDao extends JdbcSupport<ReuniaoRepo> {
   }
 
   public java.util.List<Long> reunioes(long id) {
-    return jdbc.queryForList(
+    return consultar(
         "SELECT ID_REUNIAO FROM REUNIAO WHERE REUNIAO_REPO_ID_REUN_REPO=? ORDER BY ID_REUNIAO",
-        Long.class,
+        r -> r.getLong("ID_REUNIAO"),
         id);
   }
 }

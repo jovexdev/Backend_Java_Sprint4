@@ -1,5 +1,7 @@
 # Relatório de testes - FINAL 3.0.0
 
+> Este relatório registra a entrega anterior. A validação da revisão atual com JDBC direto está em [ALINHAMENTO-JDBC.md](ALINHAMENTO-JDBC.md).
+
 Data: 19/10/2026, America/Sao_Paulo. Ambiente Linux, Azul Zulu JDK21.0.8, Maven3.9.11, Spring Boot3.5.7. Sem credenciais Oracle/OpenAI reais.
 
 ## Comandos executados

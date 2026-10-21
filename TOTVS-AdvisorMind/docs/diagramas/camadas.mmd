@@ -1,8 +1,9 @@
 flowchart TD
  C["Controllers REST"] --> S["Services CRUD e ValidationService"]
  M["Main: console"] --> S
- S --> D["DAOs e ReuniaoRepository"]
- D --> DB["Seis tabelas: Oracle ou H2 local"]
+ S --> D["Seis DAOs: JDBC direto"]
+ D --> F["ConexaoFactory: DataSourceUtils e transações Spring"]
+ F --> DB["Seis tabelas: Oracle ou H2 local"]
  C --> A["AnaliseService"]
  A --> I["Três serviços IA e OpenAIClient"]
  I --> P["Provedor HTTP externo"]

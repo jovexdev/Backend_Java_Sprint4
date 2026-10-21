@@ -1,18 +1,17 @@
-package br.com.totvs.advisormind.repository;
+package br.com.totvs.advisormind.dao;
 
-import br.com.totvs.advisormind.dao.JdbcSupport;
 import br.com.totvs.advisormind.entities.*;
-import org.springframework.jdbc.core.JdbcTemplate;
+import br.com.totvs.advisormind.conexoes.ConexaoFactory;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class ReuniaoRepository extends JdbcSupport<Reuniao> {
-  public ReuniaoRepository(JdbcTemplate jdbc) {
+public class ReuniaoDao extends JdbcSupport<Reuniao> {
+  public ReuniaoDao(ConexaoFactory conexoes) {
     super(
-        jdbc,
+        conexoes,
         "REUNIAO",
         "ID_REUNIAO",
-        (r, n) ->
+        r ->
             new Reuniao(
                 r.getLong("ID_REUNIAO"),
                 r.getString("TRANSCRICAO"),
