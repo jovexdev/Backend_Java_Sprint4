@@ -2,6 +2,8 @@
 
 Evolução da base Java 21 / Spring Boot 3.5.7 / Maven. As seis tabelas do SQL recebido são usadas por JDBC: VENDEDOR_REPO, CLIENTE, REUNIAO_REPO, VENDEDOR, REUNIAO e ANALISE_IA. Oracle permanece suportado por configuração; H2 é perfil local de avaliação. Sem arquivos JSON como fonte de reuniões.
 
+Persistência alinhada ao exemplo `SpringbootAluno-main.zip`: Model (`entities`) → Service/BO → DAO com `Connection`, `PreparedStatement`, `ResultSet` e `ConexaoFactory`. A factory participa das transações Spring e atende tanto API quanto console. Detalhes, comparação e validação desta revisão: [Alinhamento JDBC](docs/ALINHAMENTO-JDBC.md).
+
 ## Executar
 JDK 21 e Maven 3.6.3+ (validação: Zulu 21.0.8, Maven 3.9.11). Abra no IntelliJ a pasta contendo pom.xml. Confirme `java -version` e `mvn -version`.
 
@@ -75,6 +77,10 @@ RUN_ORACLE_READONLY=true mvn -Dtest=OracleReadOnlyTest test
 Probe transacional de JDBC em schema de TESTE explicitamente autorizado:
 ```bash
 RUN_ORACLE_TRANSACTIONAL=true mvn -Dtest=OracleTransactionalProbeTest test
+```
+Para verificar também os seis DAOs reais dentro de uma transação Spring, no mesmo schema de teste autorizado:
+```bash
+RUN_ORACLE_TRANSACTIONAL=true mvn -Dtest=OracleDaoIntegrationTest test
 ```
 Use DB_URL/DB_USER/DB_PASSWORD válidos para ambos. O probe NÃO executa DDL ou limpa tabelas: cria dados com prefixo TEST_ dentro de transação, verifica identidades/DATE/CLOB/constraints/CRUD e sempre faz rollback. Pode consumir valores da identidade, mesmo com rollback, e não substitui a validação completa da API em Oracle. Testes locais não devem ser reconfigurados para apontar ao Oracle: contêm limpeza/DDL exclusivos dos schemas H2 descartáveis.
 

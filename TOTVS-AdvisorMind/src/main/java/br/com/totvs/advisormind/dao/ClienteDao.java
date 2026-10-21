@@ -1,17 +1,17 @@
 package br.com.totvs.advisormind.dao;
 
 import br.com.totvs.advisormind.entities.*;
-import org.springframework.jdbc.core.JdbcTemplate;
+import br.com.totvs.advisormind.conexoes.ConexaoFactory;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class ClienteDao extends JdbcSupport<Cliente> {
-  public ClienteDao(JdbcTemplate jdbc) {
+  public ClienteDao(ConexaoFactory conexoes) {
     super(
-        jdbc,
+        conexoes,
         "CLIENTE",
         "ID_CLIENTE",
-        (r, n) ->
+        r ->
             new Cliente(
                 r.getLong("ID_CLIENTE"),
                 r.getString("NOME"),

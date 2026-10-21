@@ -4,14 +4,14 @@ import br.com.totvs.advisormind.dao.*;
 import br.com.totvs.advisormind.dto.ReuniaoRequest;
 import br.com.totvs.advisormind.entities.*;
 import br.com.totvs.advisormind.exception.ApiException;
-import br.com.totvs.advisormind.repository.ReuniaoRepository;
+import br.com.totvs.advisormind.dao.ReuniaoDao;
 import java.util.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ReuniaoService {
-  private final ReuniaoRepository dao;
+  private final ReuniaoDao dao;
   private final ClienteService clientes;
   private final VendedorService vendedores;
   private final ReuniaoRepoDao repos;
@@ -20,7 +20,7 @@ public class ReuniaoService {
   private final ValidationService valid;
 
   public ReuniaoService(
-      ReuniaoRepository dao,
+      ReuniaoDao dao,
       ClienteService clientes,
       VendedorService vendedores,
       ReuniaoRepoDao repos,

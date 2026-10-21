@@ -4,7 +4,7 @@ import br.com.totvs.advisormind.dao.AnaliseIADao;
 import br.com.totvs.advisormind.dto.*;
 import br.com.totvs.advisormind.entities.*;
 import br.com.totvs.advisormind.exception.ApiException;
-import br.com.totvs.advisormind.repository.ReuniaoRepository;
+import br.com.totvs.advisormind.dao.ReuniaoDao;
 import java.nio.charset.StandardCharsets;
 import java.time.*;
 import java.util.*;
@@ -14,7 +14,7 @@ import org.springframework.transaction.support.TransactionTemplate;
 @Service
 public class AnaliseService {
   private final ReuniaoService reunioes;
-  private final ReuniaoRepository reuniaoDao;
+  private final ReuniaoDao reuniaoDao;
   private final AnaliseIADao dao;
   private final SmartBriefingService briefing;
   private final ConversationalAnalyticsService analytics;
@@ -24,7 +24,7 @@ public class AnaliseService {
 
   public AnaliseService(
       ReuniaoService reunioes,
-      ReuniaoRepository reuniaoDao,
+      ReuniaoDao reuniaoDao,
       AnaliseIADao dao,
       SmartBriefingService briefing,
       ConversationalAnalyticsService analytics,

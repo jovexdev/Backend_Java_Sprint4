@@ -1,15 +1,25 @@
 package br.com.totvs.advisormind.conexoes;
 
-import java.sql.*;
+import java.sql.Connection;
+import javax.sql.DataSource;
+import org.springframework.jdbc.datasource.DataSourceUtils;
+import org.springframework.stereotype.Component;
 
-/** Console legado: configuração externa. A API usa o DataSource gerenciado. */
+/** Conexões da API e do console, configuradas pelos perfis local/oracle. */
+@Component
 public class ConexaoFactory {
-  public Connection conexao() throws ClassNotFoundException, SQLException {
-    String url = System.getenv("DB_URL"),
-        user = System.getenv("DB_USER"),
-        pass = System.getenv("DB_PASSWORD");
-    if (url == null || user == null || pass == null)
-      throw new SQLException("Configure DB_URL, DB_USER e DB_PASSWORD.");
-    return DriverManager.getConnection(url, user, pass);
+  private final DataSource dataSource;
+
+  public ConexaoFactory(DataSource dataSource) {
+    this.dataSource = dataSource;
+  }
+
+  public Connection conexao() {
+    return DataSourceUtils.getConnection(dataSource);
+  }
+
+  public void liberar(Connection connection) {
+    // Dentro de @Transactional, só o Spring deve fechar/confirmar a conexão.
+    DataSourceUtils.releaseConnection(connection, dataSource);
   }
 }

@@ -1,0 +1,16 @@
+# IDEs, builds and local databases (also at the repository root)
+**/.idea/
+*.iml
+**/target/
+**/data/
+*.mv.db
+*.trace.db
+*.log
+
+# Secrets and private Spring overrides; commit only the documented example
+.env
+.env.*
+!.env.example
+**/application-private.properties
+**/application-private.yml
+**/application-private.yaml
