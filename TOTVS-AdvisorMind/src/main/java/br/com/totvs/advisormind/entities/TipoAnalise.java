@@ -23,7 +23,7 @@ public enum TipoAnalise {
   }
 
   public static TipoAnalise porRota(String rota) {
-    for (var t : values()) if (t.rota.equals(rota)) return t;
+    for (TipoAnalise t : values()) if (t.rota.equals(rota)) return t;
     throw new ApiException(404, "Tipo de análise não encontrado.");
   }
 }

@@ -117,8 +117,8 @@ class OpenAIClientTest {
   @Test
   void metadataComesFromProvider() {
     var c = client(5).enviarComMetadados("a");
-    assertEquals("test-model", c.modelo());
-    assertEquals(42, c.tokensUtilizados());
+    assertEquals("test-model", c.getModelo());
+    assertEquals(42, c.getTokensUtilizados());
   }
 
   @Test

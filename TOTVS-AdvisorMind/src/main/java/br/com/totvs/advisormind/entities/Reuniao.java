@@ -1,7 +1,6 @@
 package br.com.totvs.advisormind.entities;
 
-import java.math.*;
-import java.time.*;
+import java.time.LocalDateTime;
 
 public class Reuniao {
   private long id;

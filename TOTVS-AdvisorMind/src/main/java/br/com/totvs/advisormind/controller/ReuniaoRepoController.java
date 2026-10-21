@@ -2,12 +2,19 @@ package br.com.totvs.advisormind.controller;
 
 import br.com.totvs.advisormind.dto.ReuniaoRepoRequest;
 import br.com.totvs.advisormind.entities.ReuniaoRepo;
-import br.com.totvs.advisormind.service.*;
+import br.com.totvs.advisormind.service.ReuniaoRepoService;
 import jakarta.validation.Valid;
 import java.net.URI;
-import java.util.*;
+import java.util.List;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/reuniao-repos")
@@ -30,8 +37,8 @@ public class ReuniaoRepoController {
 
   @PostMapping
   public ResponseEntity<ReuniaoRepo> criar(@Valid @RequestBody ReuniaoRepoRequest req) {
-    var v = service.criar(req);
-    return ResponseEntity.created(URI.create("/api/reuniao-repos/" + v.id())).body(v);
+    ReuniaoRepo v = service.criar(req);
+    return ResponseEntity.created(URI.create("/api/reuniao-repos/" + v.getId())).body(v);
   }
 
   @PutMapping("/{id}")

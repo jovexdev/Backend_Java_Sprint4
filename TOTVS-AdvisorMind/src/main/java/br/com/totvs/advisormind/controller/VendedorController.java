@@ -2,12 +2,22 @@ package br.com.totvs.advisormind.controller;
 
 import br.com.totvs.advisormind.dto.VendedorRequest;
 import br.com.totvs.advisormind.entities.Vendedor;
-import br.com.totvs.advisormind.service.*;
+import br.com.totvs.advisormind.service.VendedorService;
 import jakarta.validation.Valid;
 import java.net.URI;
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/vendedores")
@@ -30,7 +40,7 @@ public class VendedorController {
 
   @PostMapping
   public ResponseEntity<Vendedor> criar(@Valid @RequestBody VendedorRequest req) {
-    var v = service.criar(req);
+    Vendedor v = service.criar(req);
     return ResponseEntity.created(URI.create("/api/vendedores/" + v.getId())).body(v);
   }
 
@@ -48,7 +58,7 @@ public class VendedorController {
   @GetMapping("/{id}/indicadores")
   public Map<String, Object> indicadores(
       @PathVariable long id, @RequestParam(required = false) java.math.BigDecimal ticketMedio) {
-    var v = service.buscar(id);
+    Vendedor v = service.buscar(id);
     Map<String, Object> out = new LinkedHashMap<>();
     out.put("senioridade", v.calcularNivelSenioridade());
     out.put(

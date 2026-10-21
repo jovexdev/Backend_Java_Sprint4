@@ -4,9 +4,13 @@ import br.com.totvs.advisormind.dto.AnalisePreview;
 import br.com.totvs.advisormind.entities.AnaliseIA;
 import br.com.totvs.advisormind.service.AnaliseService;
 import java.net.URI;
-import java.util.*;
+import java.util.List;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class AnaliseController {
@@ -18,8 +22,8 @@ public class AnaliseController {
 
   @PostMapping("/api/reunioes/{id}/analises/{tipo}")
   public ResponseEntity<AnaliseIA> criar(@PathVariable long id, @PathVariable String tipo) {
-    var v = service.criar(id, tipo);
-    return ResponseEntity.created(URI.create("/api/analises/" + v.id())).body(v);
+    AnaliseIA v = service.criar(id, tipo);
+    return ResponseEntity.created(URI.create("/api/analises/" + v.getId())).body(v);
   }
 
   @PostMapping("/api/reunioes/{id}/analises/{tipo}/previa")

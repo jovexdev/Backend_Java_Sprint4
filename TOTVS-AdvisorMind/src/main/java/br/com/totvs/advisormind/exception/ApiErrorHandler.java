@@ -1,17 +1,19 @@
 package br.com.totvs.advisormind.exception;
 
 import jakarta.validation.ConstraintViolationException;
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.Instant;
 import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
@@ -42,10 +44,22 @@ public class ApiErrorHandler {
         "Requisição inválida. Confira tipos, campos obrigatórios e limites no contrato da API.");
   }
 
-  @ExceptionHandler(DataIntegrityViolationException.class)
-  public ResponseEntity<?> duplicate(Exception e) {
-    return error(
-        409, "Conflito de unicidade ou vínculo: confira duplicidades e registros dependentes.");
+  @ExceptionHandler(PersistenciaException.class)
+  public ResponseEntity<?> persistencia(PersistenciaException erro) {
+    Throwable causa = erro.getCause();
+    if (causa instanceof SQLException) {
+      SQLException sql = (SQLException) causa;
+      while (sql != null) {
+        if (sql instanceof SQLIntegrityConstraintViolationException
+            || "23000".equals(sql.getSQLState())
+            || sql.getErrorCode() == 1 || sql.getErrorCode() == 2291 || sql.getErrorCode() == 2292) {
+          return error(409, "Conflito de unicidade ou vínculo: confira duplicidades e registros dependentes.");
+        }
+        sql = sql.getNextException();
+      }
+    }
+    LOG.error("Falha de persistência: {}", causa.getClass().getSimpleName());
+    return error(500, "Não foi possível concluir a operação no banco de dados.");
   }
 
   @ExceptionHandler(NoResourceFoundException.class)

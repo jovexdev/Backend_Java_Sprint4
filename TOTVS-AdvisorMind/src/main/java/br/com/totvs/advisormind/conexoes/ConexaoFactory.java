@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /** Abertura JDBC no mesmo fluxo do exemplo do professor. */
+@org.springframework.stereotype.Component
 public class ConexaoFactory {
   private final String URL;
   private final String USUARIO;

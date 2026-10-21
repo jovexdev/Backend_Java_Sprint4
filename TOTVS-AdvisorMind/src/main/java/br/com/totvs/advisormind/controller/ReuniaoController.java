@@ -2,12 +2,22 @@ package br.com.totvs.advisormind.controller;
 
 import br.com.totvs.advisormind.dto.ReuniaoRequest;
 import br.com.totvs.advisormind.entities.Reuniao;
-import br.com.totvs.advisormind.service.*;
+import br.com.totvs.advisormind.service.ClienteService;
+import br.com.totvs.advisormind.service.RelatorioService;
+import br.com.totvs.advisormind.service.ReuniaoService;
 import jakarta.validation.Valid;
 import java.net.URI;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/reunioes")
@@ -33,7 +43,7 @@ public class ReuniaoController {
 
   @PostMapping
   public ResponseEntity<Reuniao> criar(@Valid @RequestBody ReuniaoRequest req) {
-    var v = service.criar(req);
+    Reuniao v = service.criar(req);
     return ResponseEntity.created(URI.create("/api/reunioes/" + v.getId())).body(v);
   }
 
@@ -58,7 +68,7 @@ public class ReuniaoController {
 
   @GetMapping("/{id}/indicadores")
   public Map<String, Object> indicadores(@PathVariable long id) {
-    var r = service.buscar(id);
+    Reuniao r = service.buscar(id);
     return Map.of(
         "temperaturaComercial",
         r.calcularTemperaturaComercial(),
