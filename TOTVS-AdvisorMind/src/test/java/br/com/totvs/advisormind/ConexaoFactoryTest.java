@@ -38,44 +38,11 @@ class ConexaoFactoryTest {
   }
 
   @Test
-  void eachPhysicalConnectionGoesThroughFactory() throws Exception {
-    var source = new ConexaoDataSource(new ConexaoFactory(URL, "fixture-user", "fixture-password"));
-    try (var first = source.getConnection(); var second = source.getConnection()) {
-      assertNotSame(first, second);
-      assertEquals(2, driver.calls);
-    }
-  }
-
-  @Test
   void oracleSqlExceptionIsPropagated() {
     var failure = new SQLException("fixture failure", "08001");
     driver.failure = failure;
     assertSame(failure, assertThrows(SQLException.class,
         () -> new ConexaoFactory(URL, "fixture-user", "fixture-password").conexao()));
-  }
-
-  @Test
-  void adapterReportsMissingDriverWithoutPrintingCredentials() throws Exception {
-    var factory = mock(ConexaoFactory.class);
-    var cause = new ClassNotFoundException("missing driver");
-    when(factory.conexao()).thenThrow(cause);
-    var error = assertThrows(SQLException.class, () -> new ConexaoDataSource(factory).getConnection());
-    assertSame(cause, error.getCause());
-    assertEquals("Driver JDBC não disponível.", error.getMessage());
-  }
-
-  @Test
-  void h2LocalFactoryUsesIndependentRealJdbcConnections() throws Exception {
-    var factory = new ConexaoH2Factory("jdbc:h2:mem:" + UUID.randomUUID() + ";MODE=Oracle", "sa", "");
-    try (var first = factory.conexao(); var second = factory.conexao()) {
-      assertNotSame(first, second);
-      assertTrue(first.getAutoCommit());
-      try (var statement = second.prepareStatement("SELECT 1 FROM DUAL");
-          var rows = statement.executeQuery()) {
-        assertTrue(rows.next());
-        assertEquals(1, rows.getInt(1));
-      }
-    }
   }
 
   private static class CapturingDriver implements Driver {

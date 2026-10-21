@@ -1,7 +1,6 @@
 package br.com.totvs.advisormind.entities;
 
-import java.math.*;
-import java.time.*;
+import java.time.LocalDate;
 
 public class Cliente {
   private long id;

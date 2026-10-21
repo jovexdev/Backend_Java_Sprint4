@@ -1,7 +1,8 @@
 package br.com.totvs.advisormind.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 
 public class JsonUtil {
   private static final ObjectMapper JSON = new ObjectMapper();

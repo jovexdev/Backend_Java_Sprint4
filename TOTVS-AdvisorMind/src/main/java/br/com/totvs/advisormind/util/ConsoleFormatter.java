@@ -1,4 +1,4 @@
-package br.com.totvs.advisormind;
+package br.com.totvs.advisormind.util;
 
 public class ConsoleFormatter {
 

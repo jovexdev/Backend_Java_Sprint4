@@ -1,6 +1,6 @@
 # Contrato REST - FINAL 3.0.0
 
-Base local: http://127.0.0.1:8080. JSON UTF-8. Todos os IDs são long positivos gerados pelo banco. Não envie id nos corpos. Campos desconhecidos, coerção de escalares, null em primitivos e frações para inteiros são rejeitados. Listagens vazias retornam []. DELETE 204 não tem corpo.
+Base local: http://127.0.0.1:8080. JSON UTF-8. Todos os IDs são long positivos gerados pelo banco. Não envie id nos corpos. Campos desconhecidos, null em primitivos e frações para inteiros são rejeitados. Listagens vazias retornam []. DELETE 204 não tem corpo.
 
 | Método | URI | Finalidade | Entrada | Sucesso | Erros |
 |---|---|---|---|---|---|

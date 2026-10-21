@@ -6,7 +6,7 @@ import java.sql.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
 
-/** Opt-in read-only schema/driver check. Full mutating suite remains H2-only. */
+/** Opt-in: consulta as colunas Oracle sem executar DDL ou alterar dados. */
 @EnabledIfEnvironmentVariable(named = "RUN_ORACLE_READONLY", matches = "true")
 class OracleReadOnlyTest {
   @Test

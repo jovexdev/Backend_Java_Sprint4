@@ -14,7 +14,7 @@ public class VoCTrackerService {
   }
 
   public String executar(String transcricao) {
-    return executarComMetadados(transcricao, false).resultado();
+    return executarComMetadados(transcricao, false).getResultado();
   }
 
   public br.com.totvs.advisormind.dto.OpenAICompletion executarComMetadados(

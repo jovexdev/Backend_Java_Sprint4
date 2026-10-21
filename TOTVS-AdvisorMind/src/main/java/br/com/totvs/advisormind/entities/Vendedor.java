@@ -1,7 +1,7 @@
 package br.com.totvs.advisormind.entities;
 
-import java.math.*;
-import java.time.*;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Vendedor {
   private long id;
@@ -102,20 +102,17 @@ public class Vendedor {
         || ticket.scale() > 2
         || ticket.precision() - ticket.scale() > 12)
       throw new IllegalArgumentException("Ticket de simulação inválido.");
-    String base =
-        cargo == null
-            ? "0.02"
-            : cargo.equalsIgnoreCase("Gerente")
-                ? "0.015"
-                : cargo.equalsIgnoreCase("Consultor") ? "0.025" : "0.03";
-    String bonus =
-        switch (calcularNivelSenioridade()) {
-          case "ESPECIALISTA" -> "0.10";
-          case "SÊNIOR" -> "0.06";
-          case "PLENO" -> "0.03";
-          case "JÚNIOR" -> "0.01";
-          default -> "0.0";
-        };
+    String base;
+    if (cargo == null) base = "0.02";
+    else if (cargo.equalsIgnoreCase("Gerente")) base = "0.015";
+    else if (cargo.equalsIgnoreCase("Consultor")) base = "0.025";
+    else base = "0.03";
+    String nivel = calcularNivelSenioridade();
+    String bonus = "0.0";
+    if (nivel.equals("ESPECIALISTA")) bonus = "0.10";
+    else if (nivel.equals("SÊNIOR")) bonus = "0.06";
+    else if (nivel.equals("PLENO")) bonus = "0.03";
+    else if (nivel.equals("JÚNIOR")) bonus = "0.01";
     return ticket
         .multiply(BigDecimal.valueOf(totalReunioes))
         .multiply(new BigDecimal(base).add(new BigDecimal(bonus)))

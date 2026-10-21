@@ -1,13 +1,19 @@
 package br.com.totvs.advisormind.service;
 
 import br.com.totvs.advisormind.exception.ApiException;
-import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.net.URI;
-import java.net.http.*;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.net.http.HttpTimeoutException;
 import java.time.Duration;
-import java.util.*;
-import org.springframework.beans.factory.annotation.*;
+import java.util.List;
+import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -43,7 +49,7 @@ public class OpenAIClient {
   }
 
   public String enviarPrompt(String prompt) {
-    return enviarComMetadados(prompt).resultado();
+    return enviarComMetadados(prompt).getResultado();
   }
 
   public br.com.totvs.advisormind.dto.OpenAICompletion enviarComMetadados(String prompt) {
