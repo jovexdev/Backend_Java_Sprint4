@@ -1,14 +1,14 @@
 package br.com.totvs.advisormind.dao;
 
 import br.com.totvs.advisormind.entities.*;
-import br.com.totvs.advisormind.conexoes.ConexaoFactory;
+import javax.sql.DataSource;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class AnaliseIADao extends JdbcSupport<AnaliseIA> {
-  public AnaliseIADao(ConexaoFactory conexoes) {
+  public AnaliseIADao(DataSource dataSource) {
     super(
-        conexoes,
+        dataSource,
         "ANALISE_IA",
         "ID_ANALISE",
         r ->

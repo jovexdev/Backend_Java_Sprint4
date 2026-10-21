@@ -3,6 +3,7 @@ package br.com.totvs.advisormind;
 import static org.junit.jupiter.api.Assertions.*;
 
 import br.com.totvs.advisormind.conexoes.ConexaoFactory;
+import br.com.totvs.advisormind.conexoes.ConexaoDataSource;
 import br.com.totvs.advisormind.dao.*;
 import br.com.totvs.advisormind.entities.*;
 import com.zaxxer.hikari.HikariDataSource;
@@ -21,19 +22,15 @@ class OracleDaoIntegrationTest {
   @Test
   void realDaosShareOracleTransactionAndRollback() {
     try (var source = new HikariDataSource()) {
-      source.setJdbcUrl(System.getenv("DB_URL"));
-      source.setUsername(System.getenv("DB_USER"));
-      source.setPassword(System.getenv("DB_PASSWORD"));
-      source.setDriverClassName("oracle.jdbc.OracleDriver");
+      source.setDataSource(new ConexaoDataSource(new ConexaoFactory()));
       source.setMaximumPoolSize(1);
       source.setConnectionTimeout(5000);
-      var factory = new ConexaoFactory(source);
-      var vrDao = new VendedorRepoDao(factory);
-      var rrDao = new ReuniaoRepoDao(factory);
-      var cDao = new ClienteDao(factory);
-      var vDao = new VendedorDao(factory);
-      var rDao = new ReuniaoDao(factory);
-      var aDao = new AnaliseIADao(factory);
+      var vrDao = new VendedorRepoDao(source);
+      var rrDao = new ReuniaoRepoDao(source);
+      var cDao = new ClienteDao(source);
+      var vDao = new VendedorDao(source);
+      var rDao = new ReuniaoDao(source);
+      var aDao = new AnaliseIADao(source);
       var tx = new TransactionTemplate(new DataSourceTransactionManager(source));
       var marker = "TEST_DAO_" + UUID.randomUUID();
       var clientId = new AtomicLong();

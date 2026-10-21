@@ -1,14 +1,14 @@
 package br.com.totvs.advisormind.dao;
 
 import br.com.totvs.advisormind.entities.*;
-import br.com.totvs.advisormind.conexoes.ConexaoFactory;
+import javax.sql.DataSource;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class VendedorDao extends JdbcSupport<Vendedor> {
-  public VendedorDao(ConexaoFactory conexoes) {
+  public VendedorDao(DataSource dataSource) {
     super(
-        conexoes,
+        dataSource,
         "VENDEDOR",
         "ID_VENDEDOR",
         r ->

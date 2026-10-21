@@ -2,7 +2,7 @@
 
 Evolução da base Java 21 / Spring Boot 3.5.7 / Maven. As seis tabelas do SQL recebido são usadas por JDBC: VENDEDOR_REPO, CLIENTE, REUNIAO_REPO, VENDEDOR, REUNIAO e ANALISE_IA. Oracle permanece suportado por configuração; H2 é perfil local de avaliação. Sem arquivos JSON como fonte de reuniões.
 
-Persistência alinhada ao exemplo `SpringbootAluno-main.zip`: Model (`entities`) → Service/BO → DAO com `Connection`, `PreparedStatement`, `ResultSet` e `ConexaoFactory`. A factory participa das transações Spring e atende tanto API quanto console. Detalhes, comparação e validação desta revisão: [Alinhamento JDBC](docs/ALINHAMENTO-JDBC.md).
+Persistência alinhada ao exemplo `SpringbootAluno-main.zip`: Model (`entities`) → Service/BO → DAO com `Connection`, `PreparedStatement`, `ResultSet` e `ConexaoFactory`. A abertura física segue o método do professor: Class.forName("oracle.jdbc.driver.OracleDriver") e DriverManager.getConnection(URL, USUARIO, SENHA). ConexaoDataSource/BancoConfig integram essa factory ao pool e às transações Spring para API e console. Detalhes, comparação e validação desta revisão: [Alinhamento JDBC](docs/ALINHAMENTO-JDBC.md).
 
 ## Executar
 JDK 21 e Maven 3.6.3+ (validação: Zulu 21.0.8, Maven 3.9.11). Abra no IntelliJ a pasta contendo pom.xml. Confirme `java -version` e `mvn -version`.
@@ -29,7 +29,7 @@ Nenhum script é executado automaticamente no perfil oracle. O banco deve estar 
 Linux/macOS:
 ```bash
 export SPRING_PROFILES_ACTIVE=oracle
-export DB_URL='jdbc:oracle:thin:@//HOST:1521/SERVICE'
+export DB_URL='jdbc:oracle:thin:@oracle.fiap.com.br:1521:orcl'
 export DB_USER='SEU_USUARIO'
 export DB_PASSWORD='SUA_SENHA'
 java -jar target/TOTVS-AdvisorMind-3.0.0.jar
@@ -37,7 +37,7 @@ java -jar target/TOTVS-AdvisorMind-3.0.0.jar
 PowerShell:
 ```powershell
 $env:SPRING_PROFILES_ACTIVE='oracle'
-$env:DB_URL='jdbc:oracle:thin:@//HOST:1521/SERVICE'
+$env:DB_URL='jdbc:oracle:thin:@oracle.fiap.com.br:1521:orcl'
 $env:DB_USER='SEU_USUARIO'
 $env:DB_PASSWORD='SUA_SENHA'
 java -jar target/TOTVS-AdvisorMind-3.0.0.jar

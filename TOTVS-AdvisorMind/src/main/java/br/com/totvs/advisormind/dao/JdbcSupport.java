@@ -1,17 +1,18 @@
 package br.com.totvs.advisormind.dao;
 
-import br.com.totvs.advisormind.conexoes.ConexaoFactory;
 import java.io.StringReader;
 import java.sql.*;
 import java.util.*;
+import javax.sql.DataSource;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataRetrievalFailureException;
 import org.springframework.jdbc.UncategorizedSQLException;
+import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.jdbc.support.SQLExceptionSubclassTranslator;
 
 /** JDBC direto compartilhado pelos seis DAOs; sem estado de conexão por requisição. */
 public abstract class JdbcSupport<T> {
-  private final ConexaoFactory conexoes;
+  private final DataSource dataSource;
   private final String table, idColumn;
   private final ResultMapper<T> mapper;
   private final SQLExceptionSubclassTranslator translator = new SQLExceptionSubclassTranslator();
@@ -27,22 +28,22 @@ public abstract class JdbcSupport<T> {
   }
 
   protected JdbcSupport(
-      ConexaoFactory conexoes, String table, String idColumn, ResultMapper<T> mapper) {
-    this.conexoes = conexoes;
+      DataSource dataSource, String table, String idColumn, ResultMapper<T> mapper) {
+    this.dataSource = dataSource;
     this.table = table;
     this.idColumn = idColumn;
     this.mapper = mapper;
   }
 
   private <R> R executar(String sql, SqlOperation<R> operation) {
-    Connection connection = conexoes.conexao();
+    Connection connection = DataSourceUtils.getConnection(dataSource);
     try {
       return operation.execute(connection);
     } catch (SQLException e) {
       DataAccessException translated = translator.translate("Operação JDBC", sql, e);
       throw translated != null ? translated : new UncategorizedSQLException("Operação JDBC", sql, e);
     } finally {
-      conexoes.liberar(connection);
+      DataSourceUtils.releaseConnection(connection, dataSource);
     }
   }
 

@@ -1,17 +1,25 @@
 {
   "data": "2026-10-20",
-  "base_commit": "6b03370da08b71f116fafbb5b4e5ea832d5e9698",
+  "base_commit": "f274be04bbd4df5b624bf2bf0401ffec22a6b46a",
   "java": "OpenJDK 26.0.2.1 (release 21)",
   "maven": "3.9.11",
   "comando_maven": "mvn clean verify",
   "maven_resultado": "BUILD SUCCESS",
+  "corpo_conexao_igual_ao_exemplo": true,
   "total": {
-    "tests": 49,
+    "tests": 54,
     "failures": 0,
     "errors": 0,
     "skipped": 3
   },
   "classes": [
+    {
+      "name": "br.com.totvs.advisormind.ConexaoFactoryTest",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
     {
       "name": "br.com.totvs.advisormind.DomainRulesTest",
       "tests": 3,
