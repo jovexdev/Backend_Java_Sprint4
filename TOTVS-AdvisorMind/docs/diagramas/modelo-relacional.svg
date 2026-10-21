@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="490" height="465" preserveAspectRatio="xMinYMin meet" viewBox="0 0 490 465" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="490" height="465"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-465)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="345" width="150" height="110" style="stroke: rgb(50%,60%,66%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(94%,96%,97%); fill-rule: evenodd;"/>
+			<rect x="0" y="431" width="150" height="24" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0; fill: rgb(5%,19%,27%); fill-rule: evenodd;"/>
+			<text x="7" y="439" style="font-family: Bold; font-size: 8px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,878) scale(1,-1)">VENDEDOR_REPO</text>
+			<text x="7" y="416" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,832) scale(1,-1)">PK ID_VEND_REPO</text>
+			<text x="7" y="403" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,806) scale(1,-1)">TOTAL_VENDEDORES</text>
+			<text x="7" y="390" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,780) scale(1,-1)">FILTRO (100)</text>
+			<rect x="170" y="345" width="150" height="110" style="stroke: rgb(50%,60%,66%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(94%,96%,97%); fill-rule: evenodd;"/>
+			<rect x="170" y="431" width="150" height="24" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0; fill: rgb(5%,19%,27%); fill-rule: evenodd;"/>
+			<text x="177" y="439" style="font-family: Bold; font-size: 8px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,878) scale(1,-1)">CLIENTE</text>
+			<text x="177" y="416" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,832) scale(1,-1)">PK ID_CLIENTE</text>
+			<text x="177" y="403" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,806) scale(1,-1)">NOME / EMPRESA (100)</text>
+			<text x="177" y="390" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,780) scale(1,-1)">DATA_NASCIMENTO</text>
+			<text x="177" y="377" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,754) scale(1,-1)">UK NOME + EMPRESA</text>
+			<rect x="340" y="345" width="150" height="110" style="stroke: rgb(50%,60%,66%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(94%,96%,97%); fill-rule: evenodd;"/>
+			<rect x="340" y="431" width="150" height="24" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0; fill: rgb(5%,19%,27%); fill-rule: evenodd;"/>
+			<text x="347" y="439" style="font-family: Bold; font-size: 8px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,878) scale(1,-1)">REUNIAO_REPO</text>
+			<text x="347" y="416" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,832) scale(1,-1)">PK ID_REUN_REPO</text>
+			<text x="347" y="403" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,806) scale(1,-1)">ARQUIVO_JSON (CLOB)</text>
+			<text x="347" y="390" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,780) scale(1,-1)">TOTAL_REUNIOES</text>
+			<rect x="0" y="80" width="150" height="205" style="stroke: rgb(50%,60%,66%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(94%,96%,97%); fill-rule: evenodd;"/>
+			<rect x="0" y="261" width="150" height="24" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0; fill: rgb(5%,19%,27%); fill-rule: evenodd;"/>
+			<text x="7" y="269" style="font-family: Bold; font-size: 8px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,538) scale(1,-1)">VENDEDOR</text>
+			<text x="7" y="246" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,492) scale(1,-1)">PK ID_VENDEDOR</text>
+			<text x="7" y="233" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,466) scale(1,-1)">NOME (100), CARGO (50)</text>
+			<text x="7" y="220" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,440) scale(1,-1)">SETOR (50)</text>
+			<text x="7" y="207" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,414) scale(1,-1)">TOTAL_REUNIOES</text>
+			<text x="7" y="194" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,388) scale(1,-1)">FK VENDEDOR_REPO_</text>
+			<text x="7" y="181" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,362) scale(1,-1)">   ID_VEND_REPO</text>
+			<text x="7" y="168" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,336) scale(1,-1)">UK NOME</text>
+			<rect x="170" y="50" width="150" height="235" style="stroke: rgb(50%,60%,66%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(94%,96%,97%); fill-rule: evenodd;"/>
+			<rect x="170" y="261" width="150" height="24" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0; fill: rgb(5%,19%,27%); fill-rule: evenodd;"/>
+			<text x="177" y="269" style="font-family: Bold; font-size: 8px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,538) scale(1,-1)">REUNIAO</text>
+			<text x="177" y="246" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,492) scale(1,-1)">PK ID_REUNIAO</text>
+			<text x="177" y="233" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,466) scale(1,-1)">TRANSCRICAO (4000)</text>
+			<text x="177" y="220" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,440) scale(1,-1)">DATA, STATUS (25)</text>
+			<text x="177" y="207" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,414) scale(1,-1)">FK CLIENTE_ID_CLIENTE</text>
+			<text x="177" y="194" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,388) scale(1,-1)">FK VENDEDOR_ID_</text>
+			<text x="177" y="181" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,362) scale(1,-1)">   VENDEDOR</text>
+			<text x="177" y="168" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,336) scale(1,-1)">FK REUNIAO_REPO_ID_</text>
+			<text x="177" y="155" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,310) scale(1,-1)">   REUN_REPO</text>
+			<text x="177" y="142" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,284) scale(1,-1)">UK CLIENTE + DATA</text>
+			<rect x="340" y="80" width="150" height="205" style="stroke: rgb(50%,60%,66%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(94%,96%,97%); fill-rule: evenodd;"/>
+			<rect x="340" y="261" width="150" height="24" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0; fill: rgb(5%,19%,27%); fill-rule: evenodd;"/>
+			<text x="347" y="269" style="font-family: Bold; font-size: 8px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,538) scale(1,-1)">ANALISE_IA</text>
+			<text x="347" y="246" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,492) scale(1,-1)">PK ID_ANALISE</text>
+			<text x="347" y="233" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,466) scale(1,-1)">TIPO, RESULTADO (250)</text>
+			<text x="347" y="220" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,440) scale(1,-1)">MODELO_IA (75)</text>
+			<text x="347" y="207" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,414) scale(1,-1)">DATAHORA_EXECUCAO</text>
+			<text x="347" y="194" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,388) scale(1,-1)">TOKENS_UTILIZADOS</text>
+			<text x="347" y="181" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,362) scale(1,-1)">FK REUNIAO_ID_REUNIAO</text>
+			<text x="347" y="168" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,336) scale(1,-1)">UK REUNIAO + TIPO</text>
+			<path d="M 75,345 L 75,285 Z" style="stroke: rgb(0%,52%,56%); stroke-linecap: butt; stroke-width: 1;"/>
+			<polygon points="75 285, 77.60979 290.4027, 72.39021 290.4027" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,52%,56%); fill-rule: evenodd;"/>
+			<text x="79.0" y="319.0" style="font-family: Body; font-size: 6.7px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,638) scale(1,-1)">1 : N</text>
+			<path d="M 245,345 L 245,285 Z" style="stroke: rgb(0%,52%,56%); stroke-linecap: butt; stroke-width: 1;"/>
+			<polygon points="245 285, 247.6098 290.4027, 242.3902 290.4027" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,52%,56%); fill-rule: evenodd;"/>
+			<text x="249.0" y="319.0" style="font-family: Body; font-size: 6.7px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,638) scale(1,-1)">1 : N</text>
+			<path d="M 415,345 L 300,285 Z" style="stroke: rgb(0%,52%,56%); stroke-linecap: butt; stroke-width: 1;"/>
+			<polygon points="300 285, 305.9971 285.1853, 303.5827 289.8129" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,52%,56%); fill-rule: evenodd;"/>
+			<text x="361.5" y="319.0" style="font-family: Body; font-size: 6.7px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,638) scale(1,-1)">1 : N</text>
+			<path d="M 150,180 L 170,180 Z" style="stroke: rgb(0%,52%,56%); stroke-linecap: butt; stroke-width: 1;"/>
+			<polygon points="170 180, 164.5973 182.6098, 164.5973 177.3902" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,52%,56%); fill-rule: evenodd;"/>
+			<path d="M 320,180 L 340,180 Z" style="stroke: rgb(0%,52%,56%); stroke-linecap: butt; stroke-width: 1;"/>
+			<polygon points="340 180, 334.5973 182.6098, 334.5973 177.3902" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,52%,56%); fill-rule: evenodd;"/>
+		</g>
+	</g>
+</svg>

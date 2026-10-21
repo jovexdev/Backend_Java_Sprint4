@@ -1,0 +1,749 @@
+{
+  "resultado": "PASSOU",
+  "verificacoes_http": 52,
+  "inicializacoes": 3,
+  "fonte_ia": "Servidor HTTP local controlado; nao e OpenAI real.",
+  "chamadas_ao_provedor_controlado": 4,
+  "oracle_real": "NAO EXECUTADO",
+  "openai_real": "NAO EXECUTADO",
+  "evidencias": [
+    {
+      "fase": "inicial",
+      "metodo": "POST",
+      "uri": "/api/vendedor-repos",
+      "requisicao": {
+        "filtro": "Demonstracao"
+      },
+      "status": 201,
+      "resposta": {
+        "id": 1,
+        "totalVendedores": 0,
+        "filtro": "Demonstracao"
+      }
+    },
+    {
+      "fase": "inicial",
+      "metodo": "POST",
+      "uri": "/api/reuniao-repos",
+      "requisicao": {},
+      "status": 201,
+      "resposta": {
+        "id": 1,
+        "arquivoJson": "{\"reunioes\":[]}",
+        "totalReunioes": 0
+      }
+    },
+    {
+      "fase": "inicial",
+      "metodo": "POST",
+      "uri": "/api/clientes",
+      "requisicao": {
+        "nome": "Joao Teste",
+        "empresa": "Empresa ME",
+        "dataNascimento": "1990-01-01"
+      },
+      "status": 201,
+      "resposta": {
+        "id": 1,
+        "nome": "Joao Teste",
+        "empresa": "Empresa ME",
+        "dataNascimento": "1990-01-01"
+      }
+    },
+    {
+      "fase": "inicial",
+      "metodo": "POST",
+      "uri": "/api/clientes",
+      "requisicao": {
+        "nome": "Joao Teste",
+        "empresa": "Empresa ME",
+        "dataNascimento": "1990-01-01"
+      },
+      "status": 409,
+      "resposta": {
+        "timestamp": "2026-10-20T01:41:52.602555011Z",
+        "status": 409,
+        "mensagem": "Conflito de unicidade ou vínculo: confira duplicidades e registros dependentes."
+      }
+    },
+    {
+      "fase": "inicial",
+      "metodo": "POST",
+      "uri": "/api/vendedores",
+      "requisicao": {
+        "nome": "Ana Atualizada",
+        "cargo": "Consultor",
+        "setor": "Tecnologia",
+        "totalReunioes": 10,
+        "vendedorRepoId": 1
+      },
+      "status": 201,
+      "resposta": {
+        "id": 1,
+        "nome": "Ana Teste",
+        "cargo": "Consultor",
+        "setor": "Tecnologia",
+        "totalReunioes": 10,
+        "vendedorRepoId": 1
+      }
+    },
+    {
+      "fase": "inicial",
+      "metodo": "POST",
+      "uri": "/api/vendedores",
+      "requisicao": {
+        "nome": "Ana Atualizada",
+        "cargo": "Consultor",
+        "setor": "Tecnologia",
+        "totalReunioes": 10,
+        "vendedorRepoId": 1
+      },
+      "status": 409,
+      "resposta": {
+        "timestamp": "2026-10-20T01:41:52.651670482Z",
+        "status": 409,
+        "mensagem": "Conflito de unicidade ou vínculo: confira duplicidades e registros dependentes."
+      }
+    },
+    {
+      "fase": "inicial",
+      "metodo": "PUT",
+      "uri": "/api/vendedores/1",
+      "requisicao": {
+        "nome": "Ana Atualizada",
+        "cargo": "Consultor",
+        "setor": "Tecnologia",
+        "totalReunioes": 10,
+        "vendedorRepoId": 1
+      },
+      "status": 200,
+      "resposta": {
+        "id": 1,
+        "nome": "Ana Atualizada",
+        "cargo": "Consultor",
+        "setor": "Tecnologia",
+        "totalReunioes": 10,
+        "vendedorRepoId": 1
+      }
+    },
+    {
+      "fase": "inicial",
+      "metodo": "GET",
+      "uri": "/api/vendedores/1/indicadores?ticketMedio=1500",
+      "requisicao": null,
+      "status": 200,
+      "resposta": {
+        "senioridade": "JÚNIOR",
+        "comissaoEstimada": 525.0,
+        "ticketMedioInformado": 1500,
+        "natureza": "Simulação acadêmica; ticket não persistido. Sem ticket, comissão indisponível."
+      }
+    },
+    {
+      "fase": "inicial",
+      "metodo": "GET",
+      "uri": "/api/vendedores/1/indicadores",
+      "requisicao": null,
+      "status": 200,
+      "resposta": {
+        "senioridade": "JÚNIOR",
+        "comissaoEstimada": null,
+        "ticketMedioInformado": null,
+        "natureza": "Simulação acadêmica; ticket não persistido. Sem ticket, comissão indisponível."
+      }
+    },
+    {
+      "fase": "inicial",
+      "metodo": "POST",
+      "uri": "/api/reunioes",
+      "requisicao": {
+        "transcricao": "Cliente: \"Gostei\", vamos avancar.\nVendedor: proposta! ação 🚀",
+        "data": "2026-09-01T10:00:00",
+        "status": "ATENDIDA",
+        "clienteId": 1,
+        "vendedorId": 1,
+        "reuniaoRepoId": 1
+      },
+      "status": 201,
+      "resposta": {
+        "id": 1,
+        "transcricao": "Cliente: \"Gostei\", vamos avancar.\nVendedor: proposta! ação 🚀",
+        "data": "2026-09-01T10:00:00",
+        "status": "AGENDADA",
+        "clienteId": 1,
+        "vendedorId": 1,
+        "reuniaoRepoId": 1
+      }
+    },
+    {
+      "fase": "inicial",
+      "metodo": "POST",
+      "uri": "/api/reunioes",
+      "requisicao": {
+        "transcricao": "Cliente: \"Gostei\", vamos avancar.\nVendedor: proposta! ação 🚀",
+        "data": "2026-09-01T10:00:00",
+        "status": "ATENDIDA",
+        "clienteId": 1,
+        "vendedorId": 1,
+        "reuniaoRepoId": 1
+      },
+      "status": 409,
+      "resposta": {
+        "timestamp": "2026-10-20T01:41:52.716153303Z",
+        "status": 409,
+        "mensagem": "Conflito de unicidade ou vínculo: confira duplicidades e registros dependentes."
+      }
+    },
+    {
+      "fase": "inicial",
+      "metodo": "POST",
+      "uri": "/api/reunioes",
+      "requisicao": {
+        "transcricao": "Cliente: \"Gostei\", vamos avancar.\nVendedor: proposta! ação 🚀",
+        "data": "2026-09-01T10:00:00",
+        "status": "AGENDADA",
+        "clienteId": 1,
+        "vendedorId": 999999,
+        "reuniaoRepoId": 1
+      },
+      "status": 404,
+      "resposta": {
+        "timestamp": "2026-10-20T01:41:52.721939219Z",
+        "status": 404,
+        "mensagem": "Registro não encontrado."
+      }
+    },
+    {
+      "fase": "inicial",
+      "metodo": "POST",
+      "uri": "/api/reunioes",
+      "requisicao": {
+        "transcricao": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "data": "2026-09-01T10:00:00",
+        "status": "AGENDADA",
+        "clienteId": 1,
+        "vendedorId": 1,
+        "reuniaoRepoId": 1
+      },
+      "status": 400,
+      "resposta": {
+        "timestamp": "2026-10-20T01:41:52.735225319Z",
+        "status": 400,
+        "mensagem": "Requisição inválida. Confira tipos, campos obrigatórios e limites no contrato da API."
+      }
+    },
+    {
+      "fase": "inicial",
+      "metodo": "GET",
+      "uri": "/api/reunioes/1/indicadores",
+      "requisicao": null,
+      "status": 200,
+      "resposta": {
+        "natureza": "Heurísticas acadêmicas, não métricas oficiais da TOTVS.",
+        "perfilComercial": "PEQUENO NEGÓCIO - abordagem ágil, foco em custo-benefício",
+        "duracaoEstimadaMinutos": 1,
+        "temperaturaComercial": "QUENTE"
+      }
+    },
+    {
+      "fase": "inicial",
+      "metodo": "GET",
+      "uri": "/api/reunioes/estatisticas",
+      "requisicao": null,
+      "status": 200,
+      "resposta": {
+        "reuniaoMaisExtensaId": 1,
+        "totalReunioes": 1,
+        "empresasAtendidas": 1
+      }
+    },
+    {
+      "fase": "inicial",
+      "metodo": "POST",
+      "uri": "/api/reunioes/1/analises/smart-briefing",
+      "requisicao": null,
+      "status": 503,
+      "resposta": {
+        "timestamp": "2026-10-20T01:41:52.753407650Z",
+        "status": 503,
+        "mensagem": "Integração de IA não configurada."
+      }
+    },
+    {
+      "fase": "inicial",
+      "metodo": "POST",
+      "uri": "/api/reunioes/1/analises/conversational-analytics",
+      "requisicao": null,
+      "status": 503,
+      "resposta": {
+        "timestamp": "2026-10-20T01:41:52.756292546Z",
+        "status": 503,
+        "mensagem": "Integração de IA não configurada."
+      }
+    },
+    {
+      "fase": "inicial",
+      "metodo": "POST",
+      "uri": "/api/reunioes/1/analises/voc-tracker",
+      "requisicao": null,
+      "status": 503,
+      "resposta": {
+        "timestamp": "2026-10-20T01:41:52.760099922Z",
+        "status": 503,
+        "mensagem": "Integração de IA não configurada."
+      }
+    },
+    {
+      "fase": "reinicio-com-provedor-controlado",
+      "metodo": "GET",
+      "uri": "/api/reunioes/1",
+      "requisicao": null,
+      "status": 200,
+      "resposta": {
+        "id": 1,
+        "transcricao": "Cliente: \"Gostei\", vamos avancar.\nVendedor: proposta! ação 🚀",
+        "data": "2026-09-01T10:00:00",
+        "status": "AGENDADA",
+        "clienteId": 1,
+        "vendedorId": 1,
+        "reuniaoRepoId": 1
+      }
+    },
+    {
+      "fase": "reinicio-com-provedor-controlado",
+      "metodo": "GET",
+      "uri": "/api/vendedores/1",
+      "requisicao": null,
+      "status": 200,
+      "resposta": {
+        "id": 1,
+        "nome": "Ana Atualizada",
+        "cargo": "Consultor",
+        "setor": "Tecnologia",
+        "totalReunioes": 10,
+        "vendedorRepoId": 1
+      }
+    },
+    {
+      "fase": "reinicio-com-provedor-controlado",
+      "metodo": "POST",
+      "uri": "/api/reunioes/1/analises/smart-briefing",
+      "requisicao": null,
+      "status": 201,
+      "resposta": {
+        "id": 1,
+        "tipo": 1,
+        "resultado": "FIXTURE DE TESTE: cliente interessado em demonstracao.",
+        "modeloIa": "controlled-local-fixture",
+        "datahoraExecucao": "2026-10-20T01:41:56",
+        "tokensUtilizados": 77,
+        "reuniaoId": 1
+      }
+    },
+    {
+      "fase": "reinicio-com-provedor-controlado",
+      "metodo": "POST",
+      "uri": "/api/reunioes/1/analises/conversational-analytics",
+      "requisicao": null,
+      "status": 201,
+      "resposta": {
+        "id": 2,
+        "tipo": 2,
+        "resultado": "FIXTURE DE TESTE: cliente interessado em demonstracao.",
+        "modeloIa": "controlled-local-fixture",
+        "datahoraExecucao": "2026-10-20T01:41:56",
+        "tokensUtilizados": 77,
+        "reuniaoId": 1
+      }
+    },
+    {
+      "fase": "reinicio-com-provedor-controlado",
+      "metodo": "POST",
+      "uri": "/api/reunioes/1/analises/voc-tracker",
+      "requisicao": null,
+      "status": 201,
+      "resposta": {
+        "id": 3,
+        "tipo": 3,
+        "resultado": "FIXTURE DE TESTE: cliente interessado em demonstracao.",
+        "modeloIa": "controlled-local-fixture",
+        "datahoraExecucao": "2026-10-20T01:41:56",
+        "tokensUtilizados": 77,
+        "reuniaoId": 1
+      }
+    },
+    {
+      "fase": "reinicio-com-provedor-controlado",
+      "metodo": "POST",
+      "uri": "/api/reunioes/1/analises/smart-briefing",
+      "requisicao": null,
+      "status": 409,
+      "resposta": {
+        "timestamp": "2026-10-20T01:41:56.293425209Z",
+        "status": 409,
+        "mensagem": "Já existe análise deste tipo para a reunião."
+      }
+    },
+    {
+      "fase": "reinicio-com-provedor-controlado",
+      "metodo": "POST",
+      "uri": "/api/reunioes/1/analises/smart-briefing/previa",
+      "requisicao": null,
+      "status": 200,
+      "resposta": {
+        "reuniaoId": 1,
+        "tipo": "smart-briefing",
+        "resultado": "FIXTURE DE TESTE: cliente interessado em demonstracao.",
+        "modeloIa": "controlled-local-fixture",
+        "tokensUtilizados": 77,
+        "persistida": false
+      }
+    },
+    {
+      "fase": "segundo-reinicio-verificacao-relacional",
+      "metodo": "GET",
+      "uri": "/api/vendedor-repos/1",
+      "requisicao": null,
+      "status": 200,
+      "resposta": {
+        "id": 1,
+        "totalVendedores": 1,
+        "filtro": "Demonstracao"
+      }
+    },
+    {
+      "fase": "segundo-reinicio-verificacao-relacional",
+      "metodo": "GET",
+      "uri": "/api/reuniao-repos/1",
+      "requisicao": null,
+      "status": 200,
+      "resposta": {
+        "id": 1,
+        "arquivoJson": "{\"reunioes\":[1]}",
+        "totalReunioes": 1
+      }
+    },
+    {
+      "fase": "segundo-reinicio-verificacao-relacional",
+      "metodo": "GET",
+      "uri": "/api/clientes/1",
+      "requisicao": null,
+      "status": 200,
+      "resposta": {
+        "id": 1,
+        "nome": "Joao Teste",
+        "empresa": "Empresa ME",
+        "dataNascimento": "1990-01-01"
+      }
+    },
+    {
+      "fase": "segundo-reinicio-verificacao-relacional",
+      "metodo": "GET",
+      "uri": "/api/vendedores/1",
+      "requisicao": null,
+      "status": 200,
+      "resposta": {
+        "id": 1,
+        "nome": "Ana Atualizada",
+        "cargo": "Consultor",
+        "setor": "Tecnologia",
+        "totalReunioes": 10,
+        "vendedorRepoId": 1
+      }
+    },
+    {
+      "fase": "segundo-reinicio-verificacao-relacional",
+      "metodo": "GET",
+      "uri": "/api/reunioes/1",
+      "requisicao": null,
+      "status": 200,
+      "resposta": {
+        "id": 1,
+        "transcricao": "Cliente: \"Gostei\", vamos avancar.\nVendedor: proposta! ação 🚀",
+        "data": "2026-09-01T10:00:00",
+        "status": "AGENDADA",
+        "clienteId": 1,
+        "vendedorId": 1,
+        "reuniaoRepoId": 1
+      }
+    },
+    {
+      "fase": "segundo-reinicio-verificacao-relacional",
+      "metodo": "GET",
+      "uri": "/api/analises/1",
+      "requisicao": null,
+      "status": 200,
+      "resposta": {
+        "id": 1,
+        "tipo": 1,
+        "resultado": "FIXTURE DE TESTE: cliente interessado em demonstracao.",
+        "modeloIa": "controlled-local-fixture",
+        "datahoraExecucao": "2026-10-20T01:41:56",
+        "tokensUtilizados": 77,
+        "reuniaoId": 1
+      }
+    },
+    {
+      "fase": "segundo-reinicio-verificacao-relacional",
+      "metodo": "GET",
+      "uri": "/api/reunioes/1/analises",
+      "requisicao": null,
+      "status": 200,
+      "resposta": [
+        {
+          "id": 1,
+          "tipo": 1,
+          "resultado": "FIXTURE DE TESTE: cliente interessado em demonstracao.",
+          "modeloIa": "controlled-local-fixture",
+          "datahoraExecucao": "2026-10-20T01:41:56",
+          "tokensUtilizados": 77,
+          "reuniaoId": 1
+        },
+        {
+          "id": 2,
+          "tipo": 2,
+          "resultado": "FIXTURE DE TESTE: cliente interessado em demonstracao.",
+          "modeloIa": "controlled-local-fixture",
+          "datahoraExecucao": "2026-10-20T01:41:56",
+          "tokensUtilizados": 77,
+          "reuniaoId": 1
+        },
+        {
+          "id": 3,
+          "tipo": 3,
+          "resultado": "FIXTURE DE TESTE: cliente interessado em demonstracao.",
+          "modeloIa": "controlled-local-fixture",
+          "datahoraExecucao": "2026-10-20T01:41:56",
+          "tokensUtilizados": 77,
+          "reuniaoId": 1
+        }
+      ]
+    },
+    {
+      "fase": "segundo-reinicio-verificacao-relacional",
+      "metodo": "GET",
+      "uri": "/api/reuniao-repos/1",
+      "requisicao": null,
+      "status": 200,
+      "resposta": {
+        "id": 1,
+        "arquivoJson": "{\"reunioes\":[1]}",
+        "totalReunioes": 1
+      }
+    },
+    {
+      "fase": "segundo-reinicio-verificacao-relacional",
+      "metodo": "GET",
+      "uri": "/api/vendedor-repos/1",
+      "requisicao": null,
+      "status": 200,
+      "resposta": {
+        "id": 1,
+        "totalVendedores": 1,
+        "filtro": "Demonstracao"
+      }
+    },
+    {
+      "fase": "segundo-reinicio-verificacao-relacional",
+      "metodo": "PUT",
+      "uri": "/api/reunioes/1",
+      "requisicao": {
+        "transcricao": "Alteracao bloqueada por analise",
+        "data": "2026-09-01T10:00:00",
+        "status": "AGENDADA",
+        "clienteId": 1,
+        "vendedorId": 1,
+        "reuniaoRepoId": 1
+      },
+      "status": 409,
+      "resposta": {
+        "mensagem": "Exclua as análises antes de alterar os dados analisados da reunião.",
+        "status": 409,
+        "timestamp": "2026-10-20T01:41:59.800981993Z"
+      }
+    },
+    {
+      "fase": "segundo-reinicio-verificacao-relacional",
+      "metodo": "DELETE",
+      "uri": "/api/reunioes/1",
+      "requisicao": null,
+      "status": 409,
+      "resposta": {
+        "mensagem": "Conflito de unicidade ou vínculo: confira duplicidades e registros dependentes.",
+        "status": 409,
+        "timestamp": "2026-10-20T01:41:59.827749332Z"
+      }
+    },
+    {
+      "fase": "segundo-reinicio-verificacao-relacional",
+      "metodo": "DELETE",
+      "uri": "/api/vendedores/1",
+      "requisicao": null,
+      "status": 409,
+      "resposta": {
+        "mensagem": "Conflito de unicidade ou vínculo: confira duplicidades e registros dependentes.",
+        "status": 409,
+        "timestamp": "2026-10-20T01:41:59.835366027Z"
+      }
+    },
+    {
+      "fase": "segundo-reinicio-verificacao-relacional",
+      "metodo": "DELETE",
+      "uri": "/api/clientes/1",
+      "requisicao": null,
+      "status": 409,
+      "resposta": {
+        "mensagem": "Conflito de unicidade ou vínculo: confira duplicidades e registros dependentes.",
+        "status": 409,
+        "timestamp": "2026-10-20T01:41:59.840188287Z"
+      }
+    },
+    {
+      "fase": "segundo-reinicio-verificacao-relacional",
+      "metodo": "DELETE",
+      "uri": "/api/vendedor-repos/1",
+      "requisicao": null,
+      "status": 409,
+      "resposta": {
+        "mensagem": "Conflito de unicidade ou vínculo: confira duplicidades e registros dependentes.",
+        "status": 409,
+        "timestamp": "2026-10-20T01:41:59.844089359Z"
+      }
+    },
+    {
+      "fase": "segundo-reinicio-verificacao-relacional",
+      "metodo": "DELETE",
+      "uri": "/api/reuniao-repos/1",
+      "requisicao": null,
+      "status": 409,
+      "resposta": {
+        "mensagem": "Conflito de unicidade ou vínculo: confira duplicidades e registros dependentes.",
+        "status": 409,
+        "timestamp": "2026-10-20T01:41:59.848826295Z"
+      }
+    },
+    {
+      "fase": "segundo-reinicio-verificacao-relacional",
+      "metodo": "DELETE",
+      "uri": "/api/analises/1",
+      "requisicao": null,
+      "status": 204,
+      "resposta": null
+    },
+    {
+      "fase": "segundo-reinicio-verificacao-relacional",
+      "metodo": "DELETE",
+      "uri": "/api/analises/2",
+      "requisicao": null,
+      "status": 204,
+      "resposta": null
+    },
+    {
+      "fase": "segundo-reinicio-verificacao-relacional",
+      "metodo": "DELETE",
+      "uri": "/api/analises/3",
+      "requisicao": null,
+      "status": 204,
+      "resposta": null
+    },
+    {
+      "fase": "segundo-reinicio-verificacao-relacional",
+      "metodo": "PUT",
+      "uri": "/api/reunioes/1",
+      "requisicao": {
+        "transcricao": "Cliente: \"Gostei\", vamos avancar.\nVendedor: proposta! ação 🚀",
+        "data": "2026-09-01T10:00:00",
+        "status": "ATENDIDA",
+        "clienteId": 1,
+        "vendedorId": 1,
+        "reuniaoRepoId": 1
+      },
+      "status": 200,
+      "resposta": {
+        "id": 1,
+        "transcricao": "Cliente: \"Gostei\", vamos avancar.\nVendedor: proposta! ação 🚀",
+        "data": "2026-09-01T10:00:00",
+        "status": "ATENDIDA",
+        "clienteId": 1,
+        "vendedorId": 1,
+        "reuniaoRepoId": 1
+      }
+    },
+    {
+      "fase": "segundo-reinicio-verificacao-relacional",
+      "metodo": "DELETE",
+      "uri": "/api/reunioes/1",
+      "requisicao": null,
+      "status": 204,
+      "resposta": null
+    },
+    {
+      "fase": "segundo-reinicio-verificacao-relacional",
+      "metodo": "GET",
+      "uri": "/api/reuniao-repos/1",
+      "requisicao": null,
+      "status": 200,
+      "resposta": {
+        "id": 1,
+        "arquivoJson": "{\"reunioes\":[]}",
+        "totalReunioes": 0
+      }
+    },
+    {
+      "fase": "segundo-reinicio-verificacao-relacional",
+      "metodo": "DELETE",
+      "uri": "/api/vendedores/1",
+      "requisicao": null,
+      "status": 204,
+      "resposta": null
+    },
+    {
+      "fase": "segundo-reinicio-verificacao-relacional",
+      "metodo": "GET",
+      "uri": "/api/vendedor-repos/1",
+      "requisicao": null,
+      "status": 200,
+      "resposta": {
+        "id": 1,
+        "totalVendedores": 0,
+        "filtro": "Demonstracao"
+      }
+    },
+    {
+      "fase": "segundo-reinicio-verificacao-relacional",
+      "metodo": "DELETE",
+      "uri": "/api/clientes/1",
+      "requisicao": null,
+      "status": 204,
+      "resposta": null
+    },
+    {
+      "fase": "segundo-reinicio-verificacao-relacional",
+      "metodo": "DELETE",
+      "uri": "/api/vendedor-repos/1",
+      "requisicao": null,
+      "status": 204,
+      "resposta": null
+    },
+    {
+      "fase": "segundo-reinicio-verificacao-relacional",
+      "metodo": "DELETE",
+      "uri": "/api/reuniao-repos/1",
+      "requisicao": null,
+      "status": 204,
+      "resposta": null
+    },
+    {
+      "fase": "segundo-reinicio-verificacao-relacional",
+      "metodo": "GET",
+      "uri": "/api/reunioes/1",
+      "requisicao": null,
+      "status": 404,
+      "resposta": {
+        "mensagem": "Registro não encontrado.",
+        "status": 404,
+        "timestamp": "2026-10-20T01:41:59.911636007Z"
+      }
+    }
+  ]
+}

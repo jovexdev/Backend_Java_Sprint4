@@ -1,0 +1,282 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/clientes",
+    "purpose": "Criar com identidade gerada",
+    "input": "ClienteRequest",
+    "success": "201",
+    "error": "400, 404, 409, 500"
+  },
+  {
+    "method": "GET",
+    "path": "/api/clientes",
+    "purpose": "Listar",
+    "input": "Nenhum",
+    "success": "200",
+    "error": "500"
+  },
+  {
+    "method": "GET",
+    "path": "/api/clientes/{id}",
+    "purpose": "Consultar",
+    "input": "id positivo",
+    "success": "200",
+    "error": "400, 404, 500"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/clientes/{id}",
+    "purpose": "Atualizar",
+    "input": "id + ClienteRequest",
+    "success": "200",
+    "error": "400, 404, 409, 500"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/clientes/{id}",
+    "purpose": "Excluir; dependências impedem exclusão",
+    "input": "id positivo",
+    "success": "204",
+    "error": "400, 404, 409, 500"
+  },
+  {
+    "method": "POST",
+    "path": "/api/vendedores",
+    "purpose": "Criar com identidade gerada",
+    "input": "VendedorRequest",
+    "success": "201",
+    "error": "400, 404, 409, 500"
+  },
+  {
+    "method": "GET",
+    "path": "/api/vendedores",
+    "purpose": "Listar",
+    "input": "Nenhum",
+    "success": "200",
+    "error": "500"
+  },
+  {
+    "method": "GET",
+    "path": "/api/vendedores/{id}",
+    "purpose": "Consultar",
+    "input": "id positivo",
+    "success": "200",
+    "error": "400, 404, 500"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/vendedores/{id}",
+    "purpose": "Atualizar",
+    "input": "id + VendedorRequest",
+    "success": "200",
+    "error": "400, 404, 409, 500"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/vendedores/{id}",
+    "purpose": "Excluir; dependências impedem exclusão",
+    "input": "id positivo",
+    "success": "204",
+    "error": "400, 404, 409, 500"
+  },
+  {
+    "method": "POST",
+    "path": "/api/vendedor-repos",
+    "purpose": "Criar com identidade gerada",
+    "input": "VendedorRepoRequest",
+    "success": "201",
+    "error": "400, 404, 409, 500"
+  },
+  {
+    "method": "GET",
+    "path": "/api/vendedor-repos",
+    "purpose": "Listar",
+    "input": "Nenhum",
+    "success": "200",
+    "error": "500"
+  },
+  {
+    "method": "GET",
+    "path": "/api/vendedor-repos/{id}",
+    "purpose": "Consultar",
+    "input": "id positivo",
+    "success": "200",
+    "error": "400, 404, 500"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/vendedor-repos/{id}",
+    "purpose": "Atualizar",
+    "input": "id + VendedorRepoRequest",
+    "success": "200",
+    "error": "400, 404, 409, 500"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/vendedor-repos/{id}",
+    "purpose": "Excluir; dependências impedem exclusão",
+    "input": "id positivo",
+    "success": "204",
+    "error": "400, 404, 409, 500"
+  },
+  {
+    "method": "POST",
+    "path": "/api/reuniao-repos",
+    "purpose": "Criar com identidade gerada",
+    "input": "ReuniaoRepoRequest",
+    "success": "201",
+    "error": "400, 404, 409, 500"
+  },
+  {
+    "method": "GET",
+    "path": "/api/reuniao-repos",
+    "purpose": "Listar",
+    "input": "Nenhum",
+    "success": "200",
+    "error": "500"
+  },
+  {
+    "method": "GET",
+    "path": "/api/reuniao-repos/{id}",
+    "purpose": "Consultar",
+    "input": "id positivo",
+    "success": "200",
+    "error": "400, 404, 500"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/reuniao-repos/{id}",
+    "purpose": "Regerar índice e contador",
+    "input": "id + ReuniaoRepoRequest",
+    "success": "200",
+    "error": "400, 404, 409, 500"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/reuniao-repos/{id}",
+    "purpose": "Excluir; dependências impedem exclusão",
+    "input": "id positivo",
+    "success": "204",
+    "error": "400, 404, 409, 500"
+  },
+  {
+    "method": "POST",
+    "path": "/api/reunioes",
+    "purpose": "Criar com identidade gerada",
+    "input": "ReuniaoRequest",
+    "success": "201",
+    "error": "400, 404, 409, 500"
+  },
+  {
+    "method": "GET",
+    "path": "/api/reunioes",
+    "purpose": "Listar",
+    "input": "Nenhum",
+    "success": "200",
+    "error": "500"
+  },
+  {
+    "method": "GET",
+    "path": "/api/reunioes/{id}",
+    "purpose": "Consultar",
+    "input": "id positivo",
+    "success": "200",
+    "error": "400, 404, 500"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/reunioes/{id}",
+    "purpose": "Atualizar",
+    "input": "id + ReuniaoRequest",
+    "success": "200",
+    "error": "400, 404, 409, 500"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/reunioes/{id}",
+    "purpose": "Excluir; dependências impedem exclusão",
+    "input": "id positivo",
+    "success": "204",
+    "error": "400, 404, 409, 500"
+  },
+  {
+    "method": "GET",
+    "path": "/api/vendedores/{id}/indicadores",
+    "purpose": "Senioridade; simulação opcional de comissão",
+    "input": "id; query ticketMedio opcional",
+    "success": "200",
+    "error": "400, 404, 500"
+  },
+  {
+    "method": "POST",
+    "path": "/api/vendedores/{id}/registrar-reuniao",
+    "purpose": "Incrementar contador histórico explícito",
+    "input": "id; sem corpo",
+    "success": "200",
+    "error": "400, 404, 409, 500"
+  },
+  {
+    "method": "GET",
+    "path": "/api/reunioes/estatisticas",
+    "purpose": "Contagens de reuniões/empresas e maior transcrição",
+    "input": "Nenhum",
+    "success": "200",
+    "error": "500"
+  },
+  {
+    "method": "GET",
+    "path": "/api/reunioes/{id}/indicadores",
+    "purpose": "Temperatura, duração e perfil acadêmicos",
+    "input": "id positivo",
+    "success": "200",
+    "error": "400, 404, 500"
+  },
+  {
+    "method": "POST",
+    "path": "/api/reunioes/{id}/analises/{tipo}",
+    "purpose": "Gerar análise compacta e persistir",
+    "input": "id; tipo; sem corpo",
+    "success": "201",
+    "error": "400, 404, 409, 500, 502, 503, 504"
+  },
+  {
+    "method": "POST",
+    "path": "/api/reunioes/{id}/analises/{tipo}/previa",
+    "purpose": "Gerar análise completa sem persistir",
+    "input": "id; tipo; sem corpo",
+    "success": "200",
+    "error": "400, 404, 500, 502, 503, 504"
+  },
+  {
+    "method": "GET",
+    "path": "/api/analises",
+    "purpose": "Listar resultados persistidos",
+    "input": "Nenhum",
+    "success": "200",
+    "error": "500"
+  },
+  {
+    "method": "GET",
+    "path": "/api/analises/{id}",
+    "purpose": "Consultar resultado persistido",
+    "input": "id positivo",
+    "success": "200",
+    "error": "400, 404, 500"
+  },
+  {
+    "method": "GET",
+    "path": "/api/reunioes/{id}/analises",
+    "purpose": "Listar resultados da reunião",
+    "input": "id positivo",
+    "success": "200",
+    "error": "400, 404, 500"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/analises/{id}",
+    "purpose": "Excluir para permitir nova análise/exclusão da reunião",
+    "input": "id positivo",
+    "success": "204",
+    "error": "400, 404, 500"
+  }
+]

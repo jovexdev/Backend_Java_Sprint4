@@ -1,0 +1,10 @@
+flowchart TD
+ C["Controllers REST"] --> S["Services CRUD e ValidationService"]
+ M["Main: console"] --> S
+ S --> D["DAOs e ReuniaoRepository"]
+ D --> DB["Seis tabelas: Oracle ou H2 local"]
+ C --> A["AnaliseService"]
+ A --> I["Três serviços IA e OpenAIClient"]
+ I --> P["Provedor HTTP externo"]
+ A --> T["TransactionTemplate: releitura e INSERT"]
+ T --> D

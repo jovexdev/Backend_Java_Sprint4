@@ -1,0 +1,181 @@
+@baseUrl = http://127.0.0.1:8080
+# Execute os POSTs iniciais e copie IDs retornados nas variáveis abaixo. Postman faz isso automaticamente.
+@vendedorRepoId = 1
+@reuniaoRepoId = 1
+@clienteId = 1
+@vendedorId = 1
+@reuniaoId = 1
+@analiseId = 1
+
+### Criar com identidade gerada
+POST {{baseUrl}}/api/vendedor-repos
+Content-Type: application/json
+
+{
+  "filtro": "Equipe comercial"
+}
+
+### Criar com identidade gerada
+POST {{baseUrl}}/api/reuniao-repos
+Content-Type: application/json
+
+{}
+
+### Criar com identidade gerada
+POST {{baseUrl}}/api/clientes
+Content-Type: application/json
+
+{
+  "nome": "João",
+  "empresa": "Empresa ME",
+  "dataNascimento": "1990-03-15"
+}
+
+### Criar com identidade gerada
+POST {{baseUrl}}/api/vendedores
+Content-Type: application/json
+
+{
+  "nome": "Ana",
+  "cargo": "Consultor",
+  "setor": "Tecnologia",
+  "totalReunioes": 10,
+  "vendedorRepoId": {{vendedorRepoId}}
+}
+
+### Criar com identidade gerada
+POST {{baseUrl}}/api/reunioes
+Content-Type: application/json
+
+{
+  "transcricao": "Cliente: gostei da proposta, vamos avançar.",
+  "data": "2026-09-01T10:00:00",
+  "status": "AGENDADA",
+  "clienteId": {{clienteId}},
+  "vendedorId": {{vendedorId}},
+  "reuniaoRepoId": {{reuniaoRepoId}}
+}
+
+### Listar
+GET {{baseUrl}}/api/clientes
+
+### Consultar
+GET {{baseUrl}}/api/clientes/{{clienteId}}
+
+### Atualizar
+PUT {{baseUrl}}/api/clientes/{{clienteId}}
+Content-Type: application/json
+
+{
+  "nome": "João",
+  "empresa": "Empresa ME",
+  "dataNascimento": "1990-03-15"
+}
+
+### Excluir; dependências impedem exclusão
+DELETE {{baseUrl}}/api/clientes/{{clienteId}}
+
+### Listar
+GET {{baseUrl}}/api/vendedores
+
+### Consultar
+GET {{baseUrl}}/api/vendedores/{{vendedorId}}
+
+### Atualizar
+PUT {{baseUrl}}/api/vendedores/{{vendedorId}}
+Content-Type: application/json
+
+{
+  "nome": "Ana",
+  "cargo": "Consultor",
+  "setor": "Tecnologia",
+  "totalReunioes": 10,
+  "vendedorRepoId": {{vendedorRepoId}}
+}
+
+### Excluir; dependências impedem exclusão
+DELETE {{baseUrl}}/api/vendedores/{{vendedorId}}
+
+### Listar
+GET {{baseUrl}}/api/vendedor-repos
+
+### Consultar
+GET {{baseUrl}}/api/vendedor-repos/{{vendedorRepoId}}
+
+### Atualizar
+PUT {{baseUrl}}/api/vendedor-repos/{{vendedorRepoId}}
+Content-Type: application/json
+
+{
+  "filtro": "Equipe comercial"
+}
+
+### Excluir; dependências impedem exclusão
+DELETE {{baseUrl}}/api/vendedor-repos/{{vendedorRepoId}}
+
+### Listar
+GET {{baseUrl}}/api/reuniao-repos
+
+### Consultar
+GET {{baseUrl}}/api/reuniao-repos/{{reuniaoRepoId}}
+
+### Regerar índice e contador
+PUT {{baseUrl}}/api/reuniao-repos/{{reuniaoRepoId}}
+Content-Type: application/json
+
+{}
+
+### Excluir; dependências impedem exclusão
+DELETE {{baseUrl}}/api/reuniao-repos/{{reuniaoRepoId}}
+
+### Listar
+GET {{baseUrl}}/api/reunioes
+
+### Consultar
+GET {{baseUrl}}/api/reunioes/{{reuniaoId}}
+
+### Atualizar
+PUT {{baseUrl}}/api/reunioes/{{reuniaoId}}
+Content-Type: application/json
+
+{
+  "transcricao": "Cliente: gostei da proposta, vamos avançar.",
+  "data": "2026-09-01T10:00:00",
+  "status": "AGENDADA",
+  "clienteId": {{clienteId}},
+  "vendedorId": {{vendedorId}},
+  "reuniaoRepoId": {{reuniaoRepoId}}
+}
+
+### Excluir; dependências impedem exclusão
+DELETE {{baseUrl}}/api/reunioes/{{reuniaoId}}
+
+### Senioridade; simulação opcional de comissão
+GET {{baseUrl}}/api/vendedores/{{vendedorId}}/indicadores
+
+### Incrementar contador histórico explícito
+POST {{baseUrl}}/api/vendedores/{{vendedorId}}/registrar-reuniao
+
+### Contagens de reuniões/empresas e maior transcrição
+GET {{baseUrl}}/api/reunioes/estatisticas
+
+### Temperatura, duração e perfil acadêmicos
+GET {{baseUrl}}/api/reunioes/{{reuniaoId}}/indicadores
+
+### Gerar análise compacta e persistir
+POST {{baseUrl}}/api/reunioes/{{reuniaoId}}/analises/smart-briefing
+
+### Gerar análise completa sem persistir
+POST {{baseUrl}}/api/reunioes/{{reuniaoId}}/analises/smart-briefing/previa
+
+### Listar resultados persistidos
+GET {{baseUrl}}/api/analises
+
+### Consultar resultado persistido
+GET {{baseUrl}}/api/analises/{{analiseId}}
+
+### Listar resultados da reunião
+GET {{baseUrl}}/api/reunioes/{{reuniaoId}}/analises
+
+### Excluir para permitir nova análise/exclusão da reunião
+DELETE {{baseUrl}}/api/analises/{{analiseId}}

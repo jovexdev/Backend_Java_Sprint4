@@ -1,0 +1,108 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -------------------< br.com.totvs:TOTVS-AdvisorMind >-------------------
+[INFO] Building TOTVS-AdvisorMind 3.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ TOTVS-AdvisorMind ---
+[INFO] Deleting /workspace/scratch/f4003fa6862d/final-project/TOTVS-AdvisorMind/target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ TOTVS-AdvisorMind ---
+[INFO] Copying 3 resources from src/main/resources to target/classes
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ TOTVS-AdvisorMind ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 47 source files with javac [debug parameters release 21] to target/classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ TOTVS-AdvisorMind ---
+[INFO] Copying 2 resources from src/test/resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ TOTVS-AdvisorMind ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 7 source files with javac [debug parameters release 21] to target/test-classes
+[INFO] /workspace/scratch/f4003fa6862d/final-project/TOTVS-AdvisorMind/src/test/java/br/com/totvs/advisormind/DomainRulesTest.java: /workspace/scratch/f4003fa6862d/final-project/TOTVS-AdvisorMind/src/test/java/br/com/totvs/advisormind/DomainRulesTest.java uses or overrides a deprecated API.
+[INFO] /workspace/scratch/f4003fa6862d/final-project/TOTVS-AdvisorMind/src/test/java/br/com/totvs/advisormind/DomainRulesTest.java: Recompile with -Xlint:deprecation for details.
+[INFO] 
+[INFO] --- surefire:3.5.4:test (default-test) @ TOTVS-AdvisorMind ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running br.com.totvs.advisormind.OracleTransactionalProbeTest
+[WARNING] Tests run: 1, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0.003 s -- in br.com.totvs.advisormind.OracleTransactionalProbeTest
+[INFO] Running br.com.totvs.advisormind.DomainRulesTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.042 s -- in br.com.totvs.advisormind.DomainRulesTest
+[INFO] Running br.com.totvs.advisormind.NoKeyApiTest
+22:41:02.313 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [br.com.totvs.advisormind.NoKeyApiTest]: NoKeyApiTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+22:41:02.407 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration br.com.totvs.advisormind.AdvisorMindApplication for test class br.com.totvs.advisormind.NoKeyApiTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.5.7)
+
+2026-10-19T22:41:02.717-03:00  INFO 136 --- [TOTVS-AdvisorMind] [           main] br.com.totvs.advisormind.NoKeyApiTest    : Starting NoKeyApiTest using Java 21.0.8 with PID 136 (started by root in /workspace/scratch/f4003fa6862d/final-project/TOTVS-AdvisorMind)
+2026-10-19T22:41:02.718-03:00  INFO 136 --- [TOTVS-AdvisorMind] [           main] br.com.totvs.advisormind.NoKeyApiTest    : The following 1 profile is active: "test"
+2026-10-19T22:41:03.373-03:00  INFO 136 --- [TOTVS-AdvisorMind] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-10-19T22:41:03.618-03:00  INFO 136 --- [TOTVS-AdvisorMind] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:nokey user=SA
+2026-10-19T22:41:03.620-03:00  INFO 136 --- [TOTVS-AdvisorMind] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-10-19T22:41:04.232-03:00  INFO 136 --- [TOTVS-AdvisorMind] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-19T22:41:04.232-03:00  INFO 136 --- [TOTVS-AdvisorMind] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T22:41:04.233-03:00  INFO 136 --- [TOTVS-AdvisorMind] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2026-10-19T22:41:04.252-03:00  INFO 136 --- [TOTVS-AdvisorMind] [           main] br.com.totvs.advisormind.NoKeyApiTest    : Started NoKeyApiTest in 1.752 seconds (process running for 2.548)
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.429 s -- in br.com.totvs.advisormind.NoKeyApiTest
+[INFO] Running br.com.totvs.advisormind.SqlScriptTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.050 s -- in br.com.totvs.advisormind.SqlScriptTest
+[INFO] Running br.com.totvs.advisormind.OpenAIClientTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.867 s -- in br.com.totvs.advisormind.OpenAIClientTest
+[INFO] Running br.com.totvs.advisormind.OracleReadOnlyTest
+[WARNING] Tests run: 1, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0 s -- in br.com.totvs.advisormind.OracleReadOnlyTest
+[INFO] Running br.com.totvs.advisormind.RelationalApiIntegrationTest
+2026-10-19T22:41:06.556-03:00  INFO 136 --- [TOTVS-AdvisorMind] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [br.com.totvs.advisormind.RelationalApiIntegrationTest]: RelationalApiIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-19T22:41:06.560-03:00  INFO 136 --- [TOTVS-AdvisorMind] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration br.com.totvs.advisormind.AdvisorMindApplication for test class br.com.totvs.advisormind.RelationalApiIntegrationTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.5.7)
+
+2026-10-19T22:41:06.590-03:00  INFO 136 --- [TOTVS-AdvisorMind] [           main] b.c.t.a.RelationalApiIntegrationTest     : Starting RelationalApiIntegrationTest using Java 21.0.8 with PID 136 (started by root in /workspace/scratch/f4003fa6862d/final-project/TOTVS-AdvisorMind)
+2026-10-19T22:41:06.591-03:00  INFO 136 --- [TOTVS-AdvisorMind] [           main] b.c.t.a.RelationalApiIntegrationTest     : The following 1 profile is active: "test"
+2026-10-19T22:41:06.808-03:00  INFO 136 --- [TOTVS-AdvisorMind] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2026-10-19T22:41:06.813-03:00  INFO 136 --- [TOTVS-AdvisorMind] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection conn6: url=jdbc:h2:mem:final-tests user=SA
+2026-10-19T22:41:06.814-03:00  INFO 136 --- [TOTVS-AdvisorMind] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2026-10-19T22:41:06.945-03:00  INFO 136 --- [TOTVS-AdvisorMind] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-19T22:41:06.946-03:00  INFO 136 --- [TOTVS-AdvisorMind] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-19T22:41:06.946-03:00  INFO 136 --- [TOTVS-AdvisorMind] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-19T22:41:06.953-03:00  INFO 136 --- [TOTVS-AdvisorMind] [           main] b.c.t.a.RelationalApiIntegrationTest     : Started RelationalApiIntegrationTest in 0.389 seconds (process running for 5.25)
+2026-10-19T22:41:07.594-03:00 ERROR 136 --- [TOTVS-AdvisorMind] [           main] b.c.t.a.exception.ApiErrorHandler        : Falha interna: BadSqlGrammarException
+[INFO] Tests run: 21, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.579 s -- in br.com.totvs.advisormind.RelationalApiIntegrationTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[WARNING] Tests run: 36, Failures: 0, Errors: 0, Skipped: 2
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ TOTVS-AdvisorMind ---
+[INFO] Building jar: /workspace/scratch/f4003fa6862d/final-project/TOTVS-AdvisorMind/target/TOTVS-AdvisorMind-3.0.0.jar
+[INFO] 
+[INFO] --- spring-boot:3.5.7:repackage (repackage) @ TOTVS-AdvisorMind ---
+[INFO] Replacing main artifact /workspace/scratch/f4003fa6862d/final-project/TOTVS-AdvisorMind/target/TOTVS-AdvisorMind-3.0.0.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to /workspace/scratch/f4003fa6862d/final-project/TOTVS-AdvisorMind/target/TOTVS-AdvisorMind-3.0.0.jar.original
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  9.631 s
+[INFO] Finished at: 2026-10-19T22:41:08-03:00
+[INFO] ------------------------------------------------------------------------

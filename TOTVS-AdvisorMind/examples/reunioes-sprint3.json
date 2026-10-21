@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "cliente": {
+      "nome": "João Silva",
+      "empresa": "Carmed"
+    },
+    "transcricao": "Cliente (João Silva): Hoje enfrentamos muitos problemas com nosso sistema financeiro. Cliente (João Silva): Os relatórios frequentemente não batem e isso gera retrabalho constante. Cliente (João Silva): Além disso o processo é muito manual e dependemos de planilhas. Vendedor: Entendo esse cenário é comum em sistemas legados. Vendedor: Nosso ERP resolve isso com integração total entre módulos financeiro fiscal e contábil. Cliente (João Silva): Isso seria excelente pois hoje perdemos muito tempo validando dados. Cliente (João Silva): Gostei da proposta parece bem robusta. Cliente (João Silva): Mas tenho receio sobre integração com nosso CRM atual. Vendedor: A integração é nativa e simples. Cliente (João Silva): Perfeito isso ajuda bastante. Cliente (João Silva): Podemos agendar uma demonstração mais técnica. Vendedor: Claro vamos avançar com isso. Cliente (João Silva): Também quero envolver meu time financeiro nessa análise."
+  },
+  {
+    "id": 2,
+    "cliente": {
+      "nome": "Maria Oliveira",
+      "empresa": "Itau"
+    },
+    "transcricao": "Cliente (Maria Oliveira): Nosso processo operacional hoje é extremamente manual. Cliente (Maria Oliveira): Utilizamos muitas planilhas e isso gera erros frequentes. Cliente (Maria Oliveira): Temos retrabalho constante e dificuldade em escalar. Vendedor: Esse cenário é ideal para automação. Vendedor: Com nossas soluções você automatiza fluxos e reduz erros. Cliente (Maria Oliveira): Isso ajudaria bastante mas tenho preocupação com o custo. Cliente (Maria Oliveira): Nosso orçamento é limitado. Vendedor: Podemos adaptar uma proposta. Cliente (Maria Oliveira): Ainda estou insegura sobre o investimento. Cliente (Maria Oliveira): Talvez seja melhor começar com um piloto. Vendedor: Excelente ideia. Cliente (Maria Oliveira): Vamos avaliar internamente antes de tomar decisão final."
+  },
+  {
+    "id": 3,
+    "cliente": {
+      "nome": "Carlos Mendes",
+      "empresa": "FIAP"
+    },
+    "transcricao": "Cliente (Carlos Mendes): Gostei muito do CRM apresentado. Cliente (Carlos Mendes): Achei a interface intuitiva e completa. Cliente (Carlos Mendes): Hoje temos dificuldade em gerenciar leads e oportunidades. Vendedor: Nosso CRM organiza todo o funil comercial. Cliente (Carlos Mendes): Isso resolve um problema grande nosso. Cliente (Carlos Mendes): Excelente solução. Cliente (Carlos Mendes): Queremos melhorar nossa taxa de conversão. Vendedor: Podemos integrar com suas ferramentas atuais. Cliente (Carlos Mendes): Ótimo. Cliente (Carlos Mendes): Vamos avançar para proposta comercial. Cliente (Carlos Mendes): Quero envolver o time de vendas na próxima reunião."
+  },
+  {
+    "id": 4,
+    "cliente": {
+      "nome": "Fernanda Costa",
+      "empresa": "XP"
+    },
+    "transcricao": "Cliente (Fernanda Costa): Estamos com dificuldades no controle de estoque. Cliente (Fernanda Costa): Existem divergências entre o sistema e o físico. Cliente (Fernanda Costa): Isso impacta diretamente nosso financeiro. Vendedor: Nosso ERP resolve isso com integração em tempo real. Cliente (Fernanda Costa): Isso seria ótimo. Cliente (Fernanda Costa): Hoje é um problema crítico. Cliente (Fernanda Costa): Gostei da solução apresentada. Cliente (Fernanda Costa): Mas preciso envolver outras áreas antes de decidir. Vendedor: Podemos agendar uma reunião com seu time. Cliente (Fernanda Costa): Vamos fazer isso."
+  },
+  {
+    "id": 5,
+    "cliente": {
+      "nome": "Ricardo Alves",
+      "empresa": "B3"
+    },
+    "transcricao": "Cliente (Ricardo Alves): Nosso sistema atual é lento e apresenta falhas constantes. Cliente (Ricardo Alves): Isso prejudica a produtividade da equipe. Cliente (Ricardo Alves): Temos muitas reclamações internas. Vendedor: Isso é comum em sistemas antigos. Vendedor: Nossa solução tem alta performance. Cliente (Ricardo Alves): Isso seria uma grande melhoria. Cliente (Ricardo Alves): Gostaria de validar isso na prática. Vendedor: Podemos disponibilizar um ambiente de testes. Cliente (Ricardo Alves): Perfeito. Cliente (Ricardo Alves): Se funcionar bem temos interesse em avançar rapidamente."
+  },
+  {
+    "id": 6,
+    "cliente": {
+      "nome": "Patricia Lima",
+      "empresa": "Produtos LTDA"
+    },
+    "transcricao": "Cliente (Patrícia Lima): Temos dificuldade em acompanhar indicadores de desempenho. Cliente (Patrícia Lima): Os relatórios são limitados e pouco confiáveis. Cliente (Patrícia Lima): Isso prejudica nossa tomada de decisão. Vendedor: Nossa solução de BI resolve isso com dashboards avançados. Cliente (Patrícia Lima): Isso seria muito útil. Cliente (Patrícia Lima): Gostei bastante da proposta. Cliente (Patrícia Lima): Precisamos evoluir nossa gestão. Vendedor: Podemos integrar com seu ERP. Cliente (Patrícia Lima): Ótimo. Cliente (Patrícia Lima): Vamos avançar."
+  },
+  {
+    "id": 7,
+    "cliente": {
+      "nome": "Eduardo Ramos",
+      "empresa": "Trivago"
+    },
+    "transcricao": "Cliente (Eduardo Ramos): Estamos enfrentando dificuldades na gestão de RH. Cliente (Eduardo Ramos): O processo de folha é manual e sujeito a erros. Cliente (Eduardo Ramos): Também temos dificuldade em controlar ponto e benefícios. Vendedor: Nossa solução de RH automatiza tudo isso. Cliente (Eduardo Ramos): Isso ajudaria bastante. Cliente (Eduardo Ramos): Hoje temos muitos problemas com inconsistências. Cliente (Eduardo Ramos): Gostaria de entender melhor como funciona. Vendedor: Podemos fazer uma demonstração. Cliente (Eduardo Ramos): Vamos seguir com isso."
+  },
+  {
+    "id": 8,
+    "cliente": {
+      "nome": "Juliana Martins",
+      "empresa": "ZARA"
+    },
+    "transcricao": "Cliente (Juliana Martins): Nosso processo de vendas não é organizado. Cliente (Juliana Martins): Perdemos oportunidades por falta de controle. Cliente (Juliana Martins): Não temos visibilidade do funil. Vendedor: O CRM resolve isso. Cliente (Juliana Martins): Isso parece interessante. Cliente (Juliana Martins): Gostei da solução. Cliente (Juliana Martins): Mas preciso validar com meu time. Vendedor: Podemos agendar uma reunião. Cliente (Juliana Martins): Vamos fazer isso."
+  },
+  {
+    "id": 9,
+    "cliente": {
+      "nome": "enzo",
+      "empresa": "truc"
+    },
+    "transcricao": "dfjkdfjdfjkldfj"
+  },
+  {
+    "id": 10,
+    "cliente": {
+      "nome": ".",
+      "empresa": "."
+    },
+    "transcricao": "."
+  }
+]

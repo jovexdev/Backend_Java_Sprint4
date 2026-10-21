@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="490" height="345" preserveAspectRatio="xMinYMin meet" viewBox="0 0 490 345" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="490" height="345"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-345)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="270" width="225" height="65" style="stroke: rgb(50%,60%,66%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(94%,96%,97%); fill-rule: evenodd;"/>
+			<rect x="0" y="311" width="225" height="24" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0; fill: rgb(5%,19%,27%); fill-rule: evenodd;"/>
+			<text x="7" y="319" style="font-family: Bold; font-size: 8px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,638) scale(1,-1)">Controllers REST</text>
+			<text x="7" y="296" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,592) scale(1,-1)">JSON; DTOs; status e Location</text>
+			<rect x="265" y="270" width="225" height="65" style="stroke: rgb(50%,60%,66%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(94%,96%,97%); fill-rule: evenodd;"/>
+			<rect x="265" y="311" width="225" height="24" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0; fill: rgb(5%,19%,27%); fill-rule: evenodd;"/>
+			<text x="272" y="319" style="font-family: Bold; font-size: 8px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,638) scale(1,-1)">Main (console)</text>
+			<text x="272" y="296" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,592) scale(1,-1)">Mesmo contexto e Services; sem HTTP</text>
+			<rect x="95" y="165" width="300" height="70" style="stroke: rgb(50%,60%,66%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(94%,96%,97%); fill-rule: evenodd;"/>
+			<rect x="95" y="211" width="300" height="24" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0; fill: rgb(5%,19%,27%); fill-rule: evenodd;"/>
+			<text x="102" y="219" style="font-family: Bold; font-size: 8px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,438) scale(1,-1)">Services e ValidationService</text>
+			<text x="102" y="196" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,392) scale(1,-1)">Regras, validações e @Transactional</text>
+			<text x="102" y="183" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,366) scale(1,-1)">AnaliseService usa TransactionTemplate</text>
+			<rect x="0" y="55" width="225" height="70" style="stroke: rgb(50%,60%,66%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(94%,96%,97%); fill-rule: evenodd;"/>
+			<rect x="0" y="101" width="225" height="24" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0; fill: rgb(5%,19%,27%); fill-rule: evenodd;"/>
+			<text x="7" y="109" style="font-family: Bold; font-size: 8px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,218) scale(1,-1)">DAOs / ReuniaoRepository</text>
+			<text x="7" y="86" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,172) scale(1,-1)">JdbcSupport + JdbcTemplate</text>
+			<text x="7" y="73" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,146) scale(1,-1)">PreparedStatement; PK gerada por coluna</text>
+			<rect x="265" y="55" width="225" height="70" style="stroke: rgb(50%,60%,66%); stroke-linecap: butt; stroke-width: 0.7; fill: rgb(94%,96%,97%); fill-rule: evenodd;"/>
+			<rect x="265" y="101" width="225" height="24" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0; fill: rgb(5%,19%,27%); fill-rule: evenodd;"/>
+			<text x="272" y="109" style="font-family: Bold; font-size: 8px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,218) scale(1,-1)">Serviços IA / OpenAIClient</text>
+			<text x="272" y="86" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,172) scale(1,-1)">Prompts preservados; HTTP fora da transação</text>
+			<text x="272" y="73" style="font-family: Body; font-size: 7.2px;fill: rgb(12%,21%,28%); stroke:none;" transform="translate(0,146) scale(1,-1)">Resultado + modelo + usage.total_tokens</text>
+			<path d="M 112,270 L 190,235 Z" style="stroke: rgb(0%,52%,56%); stroke-linecap: butt; stroke-width: 1;"/>
+			<polygon points="190 235, 186.1392 239.5929, 184.0024 234.8307" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,52%,56%); fill-rule: evenodd;"/>
+			<path d="M 377,270 L 300,235 Z" style="stroke: rgb(0%,52%,56%); stroke-linecap: butt; stroke-width: 1;"/>
+			<polygon points="300 235, 305.9984 234.8598, 303.8385 239.6115" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,52%,56%); fill-rule: evenodd;"/>
+			<path d="M 180,165 L 112,125 Z" style="stroke: rgb(0%,52%,56%); stroke-linecap: butt; stroke-width: 1;"/>
+			<polygon points="112 125, 117.98 125.4898, 115.3335 129.9887" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,52%,56%); fill-rule: evenodd;"/>
+			<path d="M 310,165 L 377,125 Z" style="stroke: rgb(0%,52%,56%); stroke-linecap: butt; stroke-width: 1;"/>
+			<polygon points="377 125, 373.6989 130.0103, 371.0233 125.5286" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,52%,56%); fill-rule: evenodd;"/>
+		</g>
+	</g>
+</svg>

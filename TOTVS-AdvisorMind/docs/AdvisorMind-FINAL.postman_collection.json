@@ -1,0 +1,545 @@
+{
+  "info": {
+    "name": "AdvisorMind FINAL - seis tabelas",
+    "description": "POSTs iniciais criam dependências e salvam IDs. Chamadas de IA consomem API quando configurada. Exclusões de pais antes de dependentes geram 409 esperado.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://127.0.0.1:8080"
+    },
+    {
+      "key": "vendedorRepoId",
+      "value": ""
+    },
+    {
+      "key": "reuniaoRepoId",
+      "value": ""
+    },
+    {
+      "key": "clienteId",
+      "value": ""
+    },
+    {
+      "key": "vendedorId",
+      "value": ""
+    },
+    {
+      "key": "reuniaoId",
+      "value": ""
+    },
+    {
+      "key": "analiseId",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "1 - Cadastros em ordem de dependencias",
+      "item": [
+        {
+          "name": "POST /api/vendedor-repos",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/vendedor-repos",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filtro\": \"Equipe comercial\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 201) pm.collectionVariables.set(\"vendedorRepoId\", pm.response.json().id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST /api/reuniao-repos",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/reuniao-repos",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 201) pm.collectionVariables.set(\"reuniaoRepoId\", pm.response.json().id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST /api/clientes",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/clientes",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"João\",\n  \"empresa\": \"Empresa ME\",\n  \"dataNascimento\": \"1990-03-15\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 201) pm.collectionVariables.set(\"clienteId\", pm.response.json().id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST /api/vendedores",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/vendedores",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Ana\",\n  \"cargo\": \"Consultor\",\n  \"setor\": \"Tecnologia\",\n  \"totalReunioes\": 10,\n  \"vendedorRepoId\": {{vendedorRepoId}}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 201) pm.collectionVariables.set(\"vendedorId\", pm.response.json().id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST /api/reunioes",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/reunioes",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"transcricao\": \"Cliente: gostei da proposta, vamos avançar.\",\n  \"data\": \"2026-09-01T10:00:00\",\n  \"status\": \"AGENDADA\",\n  \"clienteId\": {{clienteId}},\n  \"vendedorId\": {{vendedorId}},\n  \"reuniaoRepoId\": {{reuniaoRepoId}}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 201) pm.collectionVariables.set(\"reuniaoId\", pm.response.json().id);"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "2 - Consultas, atualizacoes e indicadores",
+      "item": [
+        {
+          "name": "GET /api/clientes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/clientes"
+          }
+        },
+        {
+          "name": "GET /api/clientes/{{clienteId}}",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/clientes/{{clienteId}}"
+          }
+        },
+        {
+          "name": "PUT /api/clientes/{{clienteId}}",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/clientes/{{clienteId}}",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"João\",\n  \"empresa\": \"Empresa ME\",\n  \"dataNascimento\": \"1990-03-15\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/vendedores",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/vendedores"
+          }
+        },
+        {
+          "name": "GET /api/vendedores/{{vendedorId}}",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/vendedores/{{vendedorId}}"
+          }
+        },
+        {
+          "name": "PUT /api/vendedores/{{vendedorId}}",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/vendedores/{{vendedorId}}",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Ana\",\n  \"cargo\": \"Consultor\",\n  \"setor\": \"Tecnologia\",\n  \"totalReunioes\": 10,\n  \"vendedorRepoId\": {{vendedorRepoId}}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/vendedor-repos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/vendedor-repos"
+          }
+        },
+        {
+          "name": "GET /api/vendedor-repos/{{vendedorRepoId}}",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/vendedor-repos/{{vendedorRepoId}}"
+          }
+        },
+        {
+          "name": "PUT /api/vendedor-repos/{{vendedorRepoId}}",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/vendedor-repos/{{vendedorRepoId}}",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filtro\": \"Equipe comercial\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/reuniao-repos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/reuniao-repos"
+          }
+        },
+        {
+          "name": "GET /api/reuniao-repos/{{reuniaoRepoId}}",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/reuniao-repos/{{reuniaoRepoId}}"
+          }
+        },
+        {
+          "name": "PUT /api/reuniao-repos/{{reuniaoRepoId}}",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/reuniao-repos/{{reuniaoRepoId}}",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/reunioes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/reunioes"
+          }
+        },
+        {
+          "name": "GET /api/reunioes/{{reuniaoId}}",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/reunioes/{{reuniaoId}}"
+          }
+        },
+        {
+          "name": "PUT /api/reunioes/{{reuniaoId}}",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/reunioes/{{reuniaoId}}",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"transcricao\": \"Cliente: gostei da proposta, vamos avançar.\",\n  \"data\": \"2026-09-01T10:00:00\",\n  \"status\": \"AGENDADA\",\n  \"clienteId\": {{clienteId}},\n  \"vendedorId\": {{vendedorId}},\n  \"reuniaoRepoId\": {{reuniaoRepoId}}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/vendedores/{{vendedorId}}/indicadores",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/vendedores/{{vendedorId}}/indicadores"
+          }
+        },
+        {
+          "name": "POST /api/vendedores/{{vendedorId}}/registrar-reuniao",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/api/vendedores/{{vendedorId}}/registrar-reuniao"
+          }
+        },
+        {
+          "name": "GET /api/reunioes/estatisticas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/reunioes/estatisticas"
+          }
+        },
+        {
+          "name": "GET /api/reunioes/{{reuniaoId}}/indicadores",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/reunioes/{{reuniaoId}}/indicadores"
+          }
+        }
+      ]
+    },
+    {
+      "name": "3 - IA: requer chave configurada, pode gerar custo",
+      "item": [
+        {
+          "name": "POST /api/reunioes/{{reuniaoId}}/analises/smart-briefing",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/api/reunioes/{{reuniaoId}}/analises/smart-briefing"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 201) pm.collectionVariables.set(\"analiseId\", pm.response.json().id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST /api/reunioes/{{reuniaoId}}/analises/smart-briefing/previa",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/api/reunioes/{{reuniaoId}}/analises/smart-briefing/previa"
+          }
+        },
+        {
+          "name": "GET /api/analises",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/analises"
+          }
+        },
+        {
+          "name": "GET /api/analises/{{analiseId}}",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/analises/{{analiseId}}"
+          }
+        },
+        {
+          "name": "GET /api/reunioes/{{reuniaoId}}/analises",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/reunioes/{{reuniaoId}}/analises"
+          }
+        }
+      ]
+    },
+    {
+      "name": "4 - Exclusoes na ordem inversa",
+      "item": [
+        {
+          "name": "DELETE /api/analises/{{analiseId}}",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/api/analises/{{analiseId}}"
+          }
+        },
+        {
+          "name": "DELETE /api/reunioes/{{reuniaoId}}",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/api/reunioes/{{reuniaoId}}"
+          }
+        },
+        {
+          "name": "DELETE /api/vendedores/{{vendedorId}}",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/api/vendedores/{{vendedorId}}"
+          }
+        },
+        {
+          "name": "DELETE /api/clientes/{{clienteId}}",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/api/clientes/{{clienteId}}"
+          }
+        },
+        {
+          "name": "DELETE /api/reuniao-repos/{{reuniaoRepoId}}",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/api/reuniao-repos/{{reuniaoRepoId}}"
+          }
+        },
+        {
+          "name": "DELETE /api/vendedor-repos/{{vendedorRepoId}}",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/api/vendedor-repos/{{vendedorRepoId}}"
+          }
+        }
+      ]
+    }
+  ]
+}
