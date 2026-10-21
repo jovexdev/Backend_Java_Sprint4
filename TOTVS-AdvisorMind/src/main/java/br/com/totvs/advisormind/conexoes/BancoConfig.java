@@ -13,12 +13,12 @@ public class BancoConfig {
   @Bean
   @ConfigurationProperties("spring.datasource.hikari")
   public HikariDataSource dataSource(DataSourceProperties properties) {
-    String url = properties.determineUrl();
-    String usuario = properties.determineUsername();
-    String senha = properties.determinePassword();
     ConexaoFactory factory = "org.h2.Driver".equals(properties.determineDriverClassName())
-        ? new ConexaoH2Factory(url, usuario, senha)
-        : new ConexaoFactory(url, usuario, senha);
+        ? new ConexaoH2Factory(
+            properties.determineUrl(),
+            properties.determineUsername(),
+            properties.determinePassword())
+        : new ConexaoFactory();
     var source = new HikariDataSource();
     source.setDataSource(new ConexaoDataSource(factory));
     return source;
